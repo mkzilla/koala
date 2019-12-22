@@ -9,6 +9,7 @@ import (
 	"github.com/mkzilla/koala/pkg/types"
 	"github.com/mkzilla/koala/pkg/types/config"
 	"github.com/mkzilla/koala/pkg/types/data"
+
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 )
