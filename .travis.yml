@@ -1,0 +1,25 @@
+matrix:
+  include:
+    - language: go
+      os:
+        - linux
+        - osx
+      go:
+        - 1.12
+      script:
+        - pwd
+        - gofmt -d . | tee /tmp/fmt-diff
+        - "! [ -s /tmp/fmt-diff ]"
+        - export GO111MODULE=on
+        - go build ./pkg/cmd
+    - language: node_js
+      os:
+        - linux
+        - osx
+      node_js:
+        - 10.16.0
+      before_install:
+        - cd ui && npm install
+      script:
+        - npm run build
+        - npm run lint
