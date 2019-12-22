@@ -23,7 +23,7 @@
       </nz-form-control>
     </nz-form-item>
   </form>
-  <button class="login-form-button" *ngIf="config.enableOAuth" nz-button (click)="onOAuth()" [nzType]="'primary'">使用第三方登录</button>
+  <button class="login-form-button" *ngIf="config.enableGithub" nz-button (click)="onOAuth('github')" [nzType]="'primary'">使用 github 账号登录</button>
 </div>
 <canvas class="background"></canvas>
 

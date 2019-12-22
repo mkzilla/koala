@@ -15,9 +15,8 @@ type DB struct {
 }
 
 type StartOption struct {
-	DB    DB
-	Addr  string
-	Debug bool
+	Debug  bool
+	Config string
 }
 
 var (
@@ -28,23 +27,20 @@ var (
 		Long:    ``,
 		Example: `koala start`,
 		Run: func(cmd *cobra.Command, args []string) {
-			initial.InitDB(startOption.DB.DriverName, startOption.DB.DataSource, startOption.Debug)
+			initial.InitConfig(startOption.Config)
+			initial.InitDB()
 			initial.InitOAuth()
 			initial.InitRsaKey()
 			initial.InitRouter()
 
 			c := cron.New()
 			c.Start()
-			config.GinEngine.Run(startOption.Addr)
+			config.GinEngine.Run(config.Configs.Addr)
 		},
 	}
 )
 
 func init() {
 	StartCmd.Flags().SortFlags = false
-	StartCmd.Flags().StringVarP(&startOption.DB.DriverName, "driver", "d", "mysql", "")
-	StartCmd.Flags().StringVarP(&startOption.DB.DataSource, "source", "s", "", "")
-
-	StartCmd.Flags().StringVarP(&startOption.Addr, "addr", "a", ":9826", "")
-	StartCmd.Flags().BoolVarP(&startOption.Debug, "debug", "", true, "")
+	StartCmd.Flags().StringVarP(&startOption.Config, "config", "c", "", "")
 }

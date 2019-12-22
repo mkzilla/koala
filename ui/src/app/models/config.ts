@@ -1,4 +1,4 @@
 export default class Config {
-  enableOAuth = false;
+  enableGithub = false;
   enablePassword = true;
 }
