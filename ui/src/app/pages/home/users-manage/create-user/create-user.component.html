@@ -1,0 +1,22 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="创建用户" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <p>
+    <input nz-input placeholder="username" [(ngModel)]="user.username" />
+  </p>
+  <p>
+    <input nz-input placeholder="email" [(ngModel)]="user.email"/>
+  </p>
+  <p>
+    <nz-input-group [nzSuffix]="suffixTemplate">
+      <input
+        [type]="passwordVisible ? 'text' : 'password'"
+        nz-input
+        placeholder="input password"
+        [(ngModel)]="user.password"
+      />
+    </nz-input-group>
+    <ng-template #suffixTemplate>
+      <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+    </ng-template>
+  </p>
+
+</nz-modal>

@@ -1,0 +1,43 @@
+<nz-card style="width: 100%;">
+  <div nz-row [nzGutter]="8">
+    <div nz-col [nzSpan]="4" style="margin-top:10px;">
+      <button nz-button nzType="primary" nzSize="large" (click)="createUser.showModal()"><i nz-icon nzType="user-add"></i>创建用户</button>
+    </div>
+    <div nz-col [nzSpan]="12" style="margin-top:10px;">
+      <nz-button-group nzSize="large">
+        <button nz-button nzType="primary" (click)="pagePre()"><i nz-icon nzType="left"></i>上一页</button>
+        <button nz-button nzType="primary" (click)="pagePost()">下一页<i nz-icon nzType="right"></i></button>
+      </nz-button-group>
+    </div>
+    <div nz-col [nzSpan]="8" style="margin-top:10px;">
+      <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+        <input type="text" nz-input placeholder="input search username" [(ngModel)]="username" (change)="search()"/>
+      </nz-input-group>
+      <ng-template #suffixButton>
+        <button nz-button nzType="primary" nzSize="large" nzSearch (click)="search()">Search</button>
+      </ng-template>
+    </div>
+  </div>
+  <br>
+  <nz-table [nzData]="users" [nzFrontPagination]="false" [nzShowPagination]="false">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>有效</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users" cdkDrag>
+      <td>{{ user.id }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>
+        <nz-switch [(ngModel)]="user.enable" (click)="changeEnable(user)"></nz-switch>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</nz-card>
+<app-create-user></app-create-user>

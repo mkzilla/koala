@@ -1,0 +1,21 @@
+<br>
+<nz-card style="width: 100%;">
+  <nz-timeline>
+    <nz-timeline-item *ngFor="let c of comments" nzColor="green">
+      <nz-comment nzAuthor="{{c.nickname}}" [nzDatetime]="c.create_time | relativeTime">
+        <nz-avatar
+          nz-comment-avatar
+          nzIcon="user"
+        ></nz-avatar>
+        <nz-comment-content>
+          <div style="float: left;padding-top: 10px;">
+            <nz-tag [nzColor]="'#3D59AB'" *ngIf="c.type == '评论'">{{c.type}}</nz-tag>
+            <nz-tag [nzColor]="'#33A1C9'" *ngIf="c.type == '进展'">{{c.type}}</nz-tag>
+          </div>
+          <quill-view [content]="c.info" format="text" theme="snow"></quill-view>
+        </nz-comment-content>
+      </nz-comment>
+    </nz-timeline-item>
+  </nz-timeline>
+</nz-card>
+

@@ -1,0 +1,36 @@
+<nz-list
+>
+    <nz-list-item *ngFor="let item of tasks">
+      <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
+        <ng-template #nzTitle>
+          <a routerLink="/homepage/{{item.task_log.username}}">{{ item.nickname }}</a>  对 <a>{{ item.task_log.to_username }}</a>
+          <a routerLink="/task/{{item.task_log.task_id}}"> {{ item.title }}</a> {{ item.task_log.behavior }}
+          <i style="float: right;">{{item.task_log.create_time | relativeTime}}</i>
+        </ng-template>
+        <ng-template #nzDescription>
+          <nz-tag [nzColor]="'#3D59AB'" *ngIf="item.importance == 1">不重要</nz-tag>
+          <nz-tag [nzColor]="'#33A1C9'" *ngIf="item.importance == 2">一般重要</nz-tag>
+          <nz-tag [nzColor]="'#03A89E'" *ngIf="item.importance == 3">重要</nz-tag>
+          <nz-tag [nzColor]="'#00C78C'" *ngIf="item.importance == 4">很重要</nz-tag>
+          <nz-tag [nzColor]="'#1E90FF'" *ngIf="item.importance == 5">极其重要</nz-tag>
+
+          <nz-tag [nzColor]="'#DDA0DD'" *ngIf="item.priority == 1">不紧急</nz-tag>
+          <nz-tag [nzColor]="'#DA70D6'" *ngIf="item.priority == 2">一般紧急</nz-tag>
+          <nz-tag [nzColor]="'#A066D3'" *ngIf="item.priority == 3">紧急</nz-tag>
+          <nz-tag [nzColor]="'#8A2BE2'" *ngIf="item.priority == 4">很紧急</nz-tag>
+          <nz-tag [nzColor]="'#9933FA'" *ngIf="item.priority == 5">极其紧急</nz-tag>
+
+          <nz-tag [nzColor]="'#FFB6C1'" *ngIf="item.state == '0'">没有进展</nz-tag>
+          <nz-tag [nzColor]="'#FFD700'" *ngIf="item.state == '1'">即将开始</nz-tag>
+          <nz-tag [nzColor]="'#32CD32'" *ngIf="item.state == '2'">进行中</nz-tag>
+          <nz-tag [nzColor]="'#228B22'" *ngIf="item.state == '3'">完成</nz-tag>
+          <nz-tag [nzColor]="'#E3170D'" *ngIf="item.state == '4'">取消</nz-tag>
+          <nz-tag [nzColor]="'#FFD71f'" *ngIf="item.state == '5'">暂停</nz-tag>
+        </ng-template>
+      </nz-list-item-meta>
+    </nz-list-item>
+</nz-list>
+<br>
+<a *ngIf="hasMore" nz-card (click)="pageNumber = pageNumber + 1;search();">
+  <h2 style="text-align: center;">加载更多</h2>
+</a>

@@ -1,0 +1,69 @@
+<app-create-task></app-create-task>
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar"
+            nzCollapsible
+            nzWidth="180px"
+            nzBreakpoint="md"
+            [(nzCollapsed)]="isCollapsed"
+            *ngIf="user.id !== 0"
+            [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <!--<img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">-->
+        <h1>koala</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
+        <ul>
+          <li nz-menu-item >
+            <a routerLink="/">Home</a>
+          </li>
+          <li nz-menu-item>
+            <a routerLink="/homepage/{{user.username}}" [queryParams]="{idx: 0}">个人中心</a>
+          </li>
+          <li nz-menu-item>
+            <a routerLink="/dashboard">看板</a>
+          </li>
+          <li nz-menu-item>
+            <a routerLink="/weekly">周报</a>
+          </li>
+          <li nz-menu-item>
+            <a routerLink="/work-group">小组</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="管理" nzIcon="solution" *ngIf="user.is_admin">
+        <ul>
+          <li nz-menu-item>
+            <a routerLink="/users-manage">用户管理</a>
+          </li>
+          <li nz-menu-item>
+            <a routerLink="/statistics">统计报表</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header *ngIf="user.id !== 0">
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+            <i class="trigger"
+               nz-icon
+               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ></i>
+        </span>
+        <span style="float: right;padding-right: 40px;font-size: large;">
+          <a routerLink="/homepage/{{user.username}}" [queryParams]="{idx: 0}"><i nz-icon nzType="user"></i>  {{user.nickname}}</a>
+        </span>
+        <span class="header-trigger" (click)="createTask.showModal()">
+          <button nz-button nzType="primary"><i nz-icon nzType="form" nzTheme="outline"></i>创建任务</button>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

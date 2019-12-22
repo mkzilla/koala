@@ -1,0 +1,49 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="组用户列表" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzWidth="1024">
+  <div nz-row [nzGutter]="8">
+    <div nz-col [nzSpan]="8" style="margin-top:10px;">
+      <nz-input-group nzSearch nzSize="smale" [nzAddOnAfter]="suffixButton" *ngIf="group.admin_id === me.id">
+        <input type="text" nz-input placeholder="添加用户到组" [(ngModel)]="username"/>
+      </nz-input-group>
+      <ng-template #suffixButton>
+        <button nz-button nzType="primary" nzSize="smale" nzSearch (click)="addUser()">添加</button>
+      </ng-template>
+    </div>
+  </div>
+  <br>
+  <nz-table [nzData]="users" [nzFrontPagination]="false" [nzShowPagination]="false">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>
+        <a (click)="removeusername=user.username;alertRemove=true;" *ngIf="group.admin_id === me.id && user.id !== me.id">移除用户</a>
+        <a (click)="alertCheckout= true;" *ngIf="user.id === me.id">退出组</a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</nz-modal>
+<nz-modal nzTitle="退出警告" [(nzVisible)]="alertCheckout" (nzOnCancel)="alertCheckout=false;" (nzOnOk)="alertCheckout=false;checkout();">
+  <nz-result nzStatus="warning" nzTitle="确定退出该组吗？">
+    <div nz-result-extra>
+      退出后将无法和组成员共享任务，也将丧失权限互相访问主页！
+    </div>
+  </nz-result>
+</nz-modal>
+
+<nz-modal nzTitle="移除组成员警告" [(nzVisible)]="alertRemove" (nzOnCancel)="alertRemove=false;" (nzOnOk)="alertRemove=false;removeUser(removeusername);">
+  <nz-result nzStatus="warning" nzTitle="确定删除组成员 {{removeusername}} 吗?">
+    <div nz-result-extra>
+      删除后他将无法和组成员共享任务，您也不再能访问他的主页！
+    </div>
+  </nz-result>
+</nz-modal>

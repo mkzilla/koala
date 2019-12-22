@@ -1,0 +1,33 @@
+<nz-card style="width: 100%;">
+  <nz-card-tab>
+    <nz-tabset nzSize="large" nzLinkRouter>
+      <nz-tab>
+        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 0 }" queryParamsHandling="merge">概览</a>
+        <app-homepage-overview username="{{username}}"></app-homepage-overview>
+      </nz-tab>
+      <nz-tab>
+        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 1 }" queryParamsHandling="merge">我的任务</a>
+        <app-homepage-tasks username="{{username}}"></app-homepage-tasks>
+      </nz-tab>
+      <nz-tab>
+        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 2 }" queryParamsHandling="merge">关注</a>
+        <app-homepage-watch username="{{username}}"></app-homepage-watch>
+
+      </nz-tab>
+      <nz-tab>
+        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 3 }" queryParamsHandling="merge">投票</a>
+        <app-homepage-vote username="{{username}}"></app-homepage-vote>
+
+      </nz-tab>
+      <nz-tab>
+        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 4 }" queryParamsHandling="merge">周报</a>
+        <app-homepage-weekly username="{{username}}"></app-homepage-weekly>
+
+      </nz-tab>
+      <nz-tab>
+        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 5 }" queryParamsHandling="merge">OKR</a>
+        <app-homepage-okr username="{{username}}"></app-homepage-okr>
+      </nz-tab>
+    </nz-tabset>
+  </nz-card-tab>
+</nz-card>

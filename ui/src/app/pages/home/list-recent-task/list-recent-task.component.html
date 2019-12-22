@@ -1,0 +1,28 @@
+<nz-list
+  [nzDataSource]="tasks"
+  [nzRenderItem]="item"
+>
+  <ng-template #item let-item>
+    <nz-list-item>
+      <nz-list-item-meta [nzTitle]="nzTitle">
+        <ng-template #nzTitle><a routerLink="/task/{{item.task_log.task_id}}"> {{ item.title }}</a></ng-template>
+      </nz-list-item-meta>
+    </nz-list-item>
+  </ng-template>
+</nz-list>
+
+<nz-divider nzDashed [nzText]="text">
+  <ng-template #text><i nz-icon nzType="compass" nzTheme="outline"></i> 个人当前 OKR </ng-template>
+</nz-divider>
+
+<nz-table [nzData]="okrs" [nzHideOnSinglePage]="true">
+  <thead>
+  <tr>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let okr of okrs">
+    <td><a routerLink="/homepage/{{user.username}}" [queryParams]="{idx: 5}">{{okr.title}} {{okr.end | relativeTime}}</a></td>
+  </tr>
+  </tbody>
+</nz-table>

@@ -1,0 +1,63 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="创建任务" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <nz-input-group [nzSuffix]="suffixTemplate">
+    <input type="text" nz-input [(ngModel)]="task.title" placeholder="请简明扼要描述任务标题" />
+  </nz-input-group>
+  <ng-template #suffixTemplate>
+    <i
+    nz-icon
+    nz-tooltip
+    class="ant-input-clear-icon"
+    nzTheme="fill"
+    nzType="close-circle"
+    *ngIf="task.title"
+    (click)="task.title = ''"
+    ></i>
+  </ng-template>
+  <div nz-row nzType="flex" style="margin-top: 10px;">
+    <nz-form-label [nzNoColon]="false" [nzSpan]="3">重要性</nz-form-label>
+    <div nz-col [nzSpan]="6">
+      <nz-slider [(ngModel)]="task.importance" [nzMin]="1" [nzMax]="5"></nz-slider>
+    </div>
+    <nz-form-label [nzNoColon]="false" [nzSpan]="3">优先级</nz-form-label>
+    <div nz-col [nzSpan]="6">
+      <nz-slider [(ngModel)]="task.priority" [nzMin]="1" [nzMax]="5"></nz-slider>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <nz-select [(ngModel)]="task.state" nzPlaceHolder="Choose">
+        <nz-option [nzValue]=0 nzLabel="没有进展"></nz-option>
+        <nz-option [nzValue]=1 nzLabel="即将开始"></nz-option>
+        <nz-option [nzValue]=2 nzLabel="进行中"></nz-option>
+        <nz-option [nzValue]=3 nzLabel="完成"></nz-option>
+        <nz-option [nzValue]=4 nzLabel="取消"></nz-option>
+        <nz-option [nzValue]=5 nzLabel="暂停"></nz-option>
+      </nz-select>
+    </div>
+  </div>
+  <quill-editor [(ngModel)]="task.desc" placeholder="添加详细的任务介绍有助于团队和个人复盘，补充足够的细节是好的工作和学习习惯" format="html" theme="snow" [styles]="{height: '100px'}">
+    <div quill-editor-toolbar>
+      <span class="ql-formats">
+        <button class="ql-bold"></button>
+        <button class="ql-italic"></button>
+        <button class="ql-underline"></button>
+        <button class="ql-strike"></button>
+      </span>
+      <span class="ql-formats">
+        <select class="ql-color"></select>
+        <select class="ql-background"></select>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-list" value="ordered"></button>
+        <button class="ql-list" value="bullet"></button>
+        <select class="ql-align">
+          <option selected></option>
+          <option value="center"></option>
+          <option value="right"></option>
+          <option value="justify"></option>
+        </select>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-link"></button>
+      </span>
+    </div>
+  </quill-editor>
+</nz-modal>

@@ -1,0 +1,48 @@
+<div class="inner-content">
+  <nz-card nzTitle="{{group.name}}">
+    {{group.desc}}
+  </nz-card>
+  <nz-divider></nz-divider>
+  <!--<div nz-row>-->
+    <!--<div nz-col [nzSpan]="4" style="margin-top:5px;">-->
+      <!--<h4>OKR 列表</h4>-->
+    <!--</div>-->
+    <!--<div nz-col [nzSpan]="16" style="float: right;">-->
+      <!--<button nz-button nzType="link" (click)="createObjective()">创建新的 OKR</button>-->
+    <!--</div>-->
+  <!--</div>-->
+  <nz-page-header [nzGhost]="false">
+    <nz-page-header-title>
+      小组 OKR 列表
+    </nz-page-header-title>
+    <nz-page-header-subtitle>
+      按照最后截止期排序
+    </nz-page-header-subtitle>
+    <nz-page-header-extra>
+      <button nz-button nzType="primary" (click)="createObjective()">创建新的 OKR</button>
+      <button nz-button nzType="primary" (click)="changePage(-1)"><i nz-icon nzType="left"></i>前一页</button>
+      <button nz-button nzType="primary" (click)="changePage(1)">后一页<i nz-icon nzType="right"></i></button>
+    </nz-page-header-extra>
+  </nz-page-header>
+  <div nz-row [nzGutter]="8">
+    <div nz-col [nzSpan]="20" style="margin-top:10px;" *ngFor="let okr of okrs">
+      <nz-card [nzTitle]="okr.title" [nzExtra]="editTemplate">
+        <div>
+          <strong style="margin-right:30px;">完成度</strong>
+          <nz-rate [ngModel]="okr.score" nzDisabled></nz-rate>
+        </div>
+        <br><quill-view [content]="okr.desc" format="text" theme="snow"></quill-view><br>
+        <strong style="margin-right:30px;">关键结果</strong>
+        <quill-view [content]="okr.keyResults" format="text" theme="snow"></quill-view>
+        <div>
+          <nz-tag [nzColor]="'#87d068'">{{okr.start}}</nz-tag>
+          <nz-tag [nzColor]="'#f50'">{{okr.end}}</nz-tag>
+        </div>
+      </nz-card>
+      <ng-template #editTemplate>
+        <a (click)="editObjective(okr);">编辑</a>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<app-create-edit-okr (refresh)="search()"></app-create-edit-okr>

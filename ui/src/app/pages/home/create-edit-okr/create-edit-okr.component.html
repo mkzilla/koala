@@ -1,0 +1,89 @@
+<nz-modal [(nzVisible)]="createObj || editObj" nzTitle="创建/编辑目标（Objective）" (nzOnCancel)="handleCancel()" (nzOnOk)="handleConfirmCreateObj()">
+  <nz-input-group [nzSuffix]="suffixTemplate" style="margin-bottom: 10px;">
+    <input type="text" nz-input [(ngModel)]="objective.title" placeholder="请简明扼要描述目标标题" />
+  </nz-input-group>
+  <div style="margin-bottom: 10px;">
+    <strong>基本描述</strong>
+  </div>
+  <ng-template #suffixTemplate>
+    <i
+      nz-icon
+      nz-tooltip
+      class="ant-input-clear-icon"
+      nzTheme="fill"
+      nzType="close-circle"
+      *ngIf="objective.title"
+      (click)="objective.title = ''"
+    ></i>
+  </ng-template>
+  <quill-editor [(ngModel)]="objective.desc" placeholder="目标的详情并不是用来描述 KR，只是补充标题之外的细节" format="html" theme="snow" [styles]="{height: '50px'}">
+    <div quill-editor-toolbar>
+      <span class="ql-formats">
+        <button class="ql-bold"></button>
+        <button class="ql-italic"></button>
+        <button class="ql-underline"></button>
+        <button class="ql-strike"></button>
+      </span>
+      <span class="ql-formats">
+        <select class="ql-color"></select>
+        <select class="ql-background"></select>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-list" value="ordered"></button>
+        <button class="ql-list" value="bullet"></button>
+        <select class="ql-align">
+          <option selected></option>
+          <option value="center"></option>
+          <option value="right"></option>
+          <option value="justify"></option>
+        </select>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-link"></button>
+      </span>
+    </div>
+  </quill-editor>
+  <div style="margin-bottom: 10px;margin-top: 10px;">
+    <strong>关键结果</strong>
+  </div>
+  <quill-editor [(ngModel)]="objective.keyResults" placeholder="请精确描述目标的关键结果" format="html" theme="snow" [styles]="{height: '100px'}">
+    <div quill-editor-toolbar>
+      <span class="ql-formats">
+        <button class="ql-bold"></button>
+        <button class="ql-italic"></button>
+        <button class="ql-underline"></button>
+        <button class="ql-strike"></button>
+      </span>
+      <span class="ql-formats">
+        <select class="ql-color"></select>
+        <select class="ql-background"></select>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-list" value="ordered"></button>
+        <button class="ql-list" value="bullet"></button>
+        <select class="ql-align">
+          <option selected></option>
+          <option value="center"></option>
+          <option value="right"></option>
+          <option value="justify"></option>
+        </select>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-link"></button>
+      </span>
+    </div>
+  </quill-editor>
+  <div>
+    <strong style="margin-right:30px;margin-top: 10px;">完成度</strong>
+    <nz-rate [(ngModel)]="objective.score"></nz-rate>
+  </div>
+  <div style="margin-top: 10px;">
+    <strong style="margin-right:30px;">开始时间</strong>
+    <nz-date-picker [(ngModel)]="objective.start"></nz-date-picker>
+  </div>
+  <div style="margin-top: 10px;">
+    <strong style="margin-right:30px;">截止时间</strong>
+    <nz-date-picker [(ngModel)]="objective.end"></nz-date-picker>
+  </div>
+
+</nz-modal>

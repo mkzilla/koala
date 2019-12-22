@@ -1,0 +1,27 @@
+<div nz-row [nzGutter]="8">
+  <div nz-col [nzSpan]="12" style="margin-top:10px;" *ngFor="let task of tasks">
+    <nz-card [nzTitle]="nzTitle" style="height: 200px;overflow-y:scroll;">
+      <ng-template #nzTitle><a routerLink="/task/{{task.id}}"> {{ task.title }}</a> <i style="float: right;">{{task.create_time | relativeTime}}</i></ng-template>
+
+      <nz-tag [nzColor]="'#3D59AB'" *ngIf="task.importance == 1">不重要</nz-tag>
+      <nz-tag [nzColor]="'#33A1C9'" *ngIf="task.importance == 2">一般重要</nz-tag>
+      <nz-tag [nzColor]="'#03A89E'" *ngIf="task.importance == 3">重要</nz-tag>
+      <nz-tag [nzColor]="'#00C78C'" *ngIf="task.importance == 4">很重要</nz-tag>
+      <nz-tag [nzColor]="'#1E90FF'" *ngIf="task.importance == 5">极其重要</nz-tag>
+
+      <nz-tag [nzColor]="'#DDA0DD'" *ngIf="task.priority == 1">不紧急</nz-tag>
+      <nz-tag [nzColor]="'#DA70D6'" *ngIf="task.priority == 2">一般紧急</nz-tag>
+      <nz-tag [nzColor]="'#A066D3'" *ngIf="task.priority == 3">紧急</nz-tag>
+      <nz-tag [nzColor]="'#8A2BE2'" *ngIf="task.priority == 4">很紧急</nz-tag>
+      <nz-tag [nzColor]="'#9933FA'" *ngIf="task.priority == 5">极其紧急</nz-tag>
+
+      <nz-tag [nzColor]="'#FFB6C1'" *ngIf="task.state == 0">没有进展</nz-tag>
+      <nz-tag [nzColor]="'#FFD700'" *ngIf="task.state == 1">即将开始</nz-tag>
+      <nz-tag [nzColor]="'#32CD32'" *ngIf="task.state == 2">进行中</nz-tag>
+      <nz-tag [nzColor]="'#228B22'" *ngIf="task.state == 3">完成</nz-tag>
+      <nz-tag [nzColor]="'#E3170D'" *ngIf="task.state == 4">取消</nz-tag>
+      <nz-tag [nzColor]="'#FFD71f'" *ngIf="task.state == 5">暂停</nz-tag>
+      <quill-view [content]="task.desc" format="text" theme="snow"></quill-view>
+    </nz-card>
+  </div>
+</div>

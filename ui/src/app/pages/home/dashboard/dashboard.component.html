@@ -1,0 +1,55 @@
+<div style="width: 100%; min-height: 600px;">
+  <!--<div style="margin-left: 8%;margin-right: 8%;">-->
+    <!--<nz-steps>-->
+      <!--<nz-step nzTitle="即将开始的任务" nzStatus="wait" nzIcon="solution" style="float: right"></nz-step>-->
+      <!--<nz-step nzTitle="正在进行中的任务" nzStatus="process" nzIcon="loading"></nz-step>-->
+      <!--<nz-step nzTitle="已完成的任务" nzStatus="finish" [nzIcon]="iconTemplate"></nz-step>-->
+      <!--<ng-template #iconTemplate><i nz-icon nzType="smile"></i></ng-template>-->
+    <!--</nz-steps>-->
+  <!--</div>-->
+  <div nz-row>
+    <div nz-col [nzSpan]="7" style="margin-left: 16px;background: #ECECEC;">
+      <nz-card style="width: 100%;margin-top: 1px;text-align:center;">
+        即将开始
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="8" style="margin-left: 16px;background: #ECECEC;">
+      <nz-card style="width: 100%;margin-top: 1px;text-align:center;">
+        正在进行中
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="7" style="margin-left: 16px;background: #ECECEC;">
+      <nz-card style="width: 100%;margin-top: 1px;text-align:center;">
+        近期已完成
+      </nz-card>
+    </div>
+  </div>
+
+  <nz-divider></nz-divider>
+  <div nz-row cdkDropListGroup>
+    <div nz-col [nzSpan]="7" style="margin-left: 16px;min-height: 600px;background: #ECECEC;"
+         cdkDropList
+         [cdkDropListData]="kanban.will"
+         (cdkDropListDropped)="drop($event)">
+      <nz-card style="width: 100%;margin-top: 1px" *ngFor="let task of kanban.will" cdkDrag>
+        <a routerLink="/task/{{task.id}}">{{task.title}}</a>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="8" style="margin-left: 16px;min-height: 600px;background: #ECECEC;"
+         cdkDropList
+         [cdkDropListData]="kanban.doing"
+         (cdkDropListDropped)="drop($event)">
+      <nz-card style="width: 100%;margin-top: 1px;" *ngFor="let task of kanban.doing" cdkDrag>
+        <a routerLink="/task/{{task.id}}">{{task.title}}</a>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="7" style="margin-left: 16px;min-height: 600px;background: #ECECEC;"
+         cdkDropList
+         [cdkDropListData]="kanban.done"
+         (cdkDropListDropped)="drop($event)">
+      <nz-card style="width: 100%;margin-top: 1px;" *ngFor="let task of kanban.done" cdkDrag>
+        <a routerLink="/task/{{task.id}}">{{task.title}}</a>
+      </nz-card>
+    </div>
+  </div>
+</div>

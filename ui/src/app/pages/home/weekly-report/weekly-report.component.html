@@ -1,0 +1,50 @@
+<nz-card style="width: 100%;">
+  <nz-page-header [nzGhost]="false">
+    <nz-page-header-title>小组周报</nz-page-header-title>
+    <nz-page-header-subtitle></nz-page-header-subtitle>
+    <nz-page-header-extra>
+      <nz-radio-group [(ngModel)]="groupId" *ngFor="let grp of groups" (ngModelChange)="changDate(0)">
+        <label nz-radio [nzValue]=grp.id>{{grp.name}}</label>
+      </nz-radio-group>
+      <button nz-button nzType="primary" (click)="changDate(-7)"><i nz-icon nzType="left"></i>前一周</button>
+      <button nz-button nzType="primary" (click)="changDate(7)">后一周<i nz-icon nzType="right"></i></button>
+    </nz-page-header-extra>
+  </nz-page-header>
+  <nz-collapse [nzBordered]="false" *ngFor="let reports of reportGroup">
+    <nz-page-header [nzGhost]="false">
+    <nz-page-header-title>{{reports.user.nickname}}</nz-page-header-title>
+    <nz-page-header-subtitle>{{reports.from}} - {{reports.to}}</nz-page-header-subtitle>
+    </nz-page-header>
+    <nz-collapse-panel *ngFor="let report of reports.reports" [nzHeader]="nzTitle" [nzExtra]="extra" [nzActive]="true">
+      <ng-template #nzTitle>
+        <a routerLink="/task/{{report.task.id}}">{{report.task.title}}</a>
+      </ng-template>
+      <ng-template #extra>
+        <nz-tag [nzColor]="'#3D59AB'" *ngIf="report.task.importance == 1">不重要</nz-tag>
+        <nz-tag [nzColor]="'#33A1C9'" *ngIf="report.task.importance == 2">一般重要</nz-tag>
+        <nz-tag [nzColor]="'#03A89E'" *ngIf="report.task.importance == 3">重要</nz-tag>
+        <nz-tag [nzColor]="'#00C78C'" *ngIf="report.task.importance == 4">很重要</nz-tag>
+        <nz-tag [nzColor]="'#1E90FF'" *ngIf="report.task.importance == 5">极其重要</nz-tag>
+
+        <nz-tag [nzColor]="'#DDA0DD'" *ngIf="report.task.priority == 1">不紧急</nz-tag>
+        <nz-tag [nzColor]="'#DA70D6'" *ngIf="report.task.priority == 2">一般紧急</nz-tag>
+        <nz-tag [nzColor]="'#A066D3'" *ngIf="report.task.priority == 3">紧急</nz-tag>
+        <nz-tag [nzColor]="'#8A2BE2'" *ngIf="report.task.priority == 4">很紧急</nz-tag>
+        <nz-tag [nzColor]="'#9933FA'" *ngIf="report.task.priority == 5">极其紧急</nz-tag>
+
+        <nz-tag [nzColor]="'#FFB6C1'" *ngIf="report.task.state == 0">没有进展</nz-tag>
+        <nz-tag [nzColor]="'#FFD700'" *ngIf="report.task.state == 1">即将开始</nz-tag>
+        <nz-tag [nzColor]="'#32CD32'" *ngIf="report.task.state == 2">进行中</nz-tag>
+        <nz-tag [nzColor]="'#228B22'" *ngIf="report.task.state == 3">完成</nz-tag>
+        <nz-tag [nzColor]="'#E3170D'" *ngIf="report.task.state == 4">取消</nz-tag>
+        <nz-tag [nzColor]="'#FFD71f'" *ngIf="report.task.state == 5">暂停</nz-tag>
+        <nz-tag>{{report.task.create_time}}</nz-tag>
+      </ng-template>
+      <tr *ngFor="let sche of report.schedules">
+        <td>{{sche.create_time | relativeTime}}</td>
+        <td><quill-view [content]="sche.info" format="text" theme="snow"></quill-view></td>
+      </tr>
+    </nz-collapse-panel>
+  </nz-collapse>
+
+</nz-card>
