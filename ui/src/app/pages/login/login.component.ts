@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     this.authService.doBasicLogin(this.basicLogin.value);
   }
 
-  onOAuth() {
-    window.location.href = '/api/v1beta/login';
+  onOAuth(state: string) {
+    window.location.href = '/api/v1beta/login?state=' + state;
   }
 }

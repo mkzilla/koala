@@ -35,9 +35,9 @@ export class GroupsManageComponent implements OnInit {
 
   search() {
     this.manager.doListInGroups(this.pageNumber, this.name, true).then((response) => {
-      if (response.length === 0) {
+      if (this.pageNumber > 0 && response.length === 0) {
         this.notification.warning('没有更多的组数据', '');
-        this.pageNumber = this.pageNumber > 0 ? this.pageNumber - 1 : this.pageNumber;
+        this.pageNumber = this.pageNumber - 1;
         return;
       }
       this.groups = response;

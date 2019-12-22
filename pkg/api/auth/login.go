@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"strings"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -16,15 +15,23 @@ import (
 	"github.com/mkzilla/koala/pkg/utils"
 )
 
+func convertStateToAuth(state string) *config.OAuthIF {
+	switch state {
+	case "github":
+		return &config.Configs.GithubLogin
+	}
+	return nil
+}
+
 func LoginWithOAuth2(c *gin.Context) {
 	state := c.Query("state")
 	code := c.Query("code")
-	if config.OAuthConfig == nil {
+	cfg := convertStateToAuth(state)
+	if cfg == nil {
 		types.HandleError(c, types.OAuthV2Error, nil)
 		return
 	}
 
-	cfg := config.OAuthConfig
 	if code == "" {
 		c.Redirect(http.StatusFound, cfg.Config.AuthCodeURL(state))
 		return
@@ -36,12 +43,11 @@ func LoginWithOAuth2(c *gin.Context) {
 	}
 	u, err := getUserinfo(token.AccessToken, *cfg)
 	if err != nil {
-		fmt.Println(token)
 		types.HandleError(c, types.OAuthV2Error, err)
 		return
 	}
 	var usr types.User
-	ext, err := config.DBEngine.Where("username = ? and platform = ?", u.Username, u.Platform).Get(&usr)
+	ext, err := config.DBEngine.Where("globalUnique = ?", u.GlobalUnique).Get(&usr)
 	if err != nil {
 		types.HandleError(c, types.FailedToGetDataFromDB, err)
 		return
@@ -51,6 +57,7 @@ func LoginWithOAuth2(c *gin.Context) {
 		return
 	}
 	if ext && usr.Enable {
+		u.Username = usr.Username
 		_, err := config.DBEngine.Update(u, usr)
 		if err != nil {
 			types.HandleError(c, types.FailedToInsertDataToDatabase, err)
@@ -59,6 +66,10 @@ func LoginWithOAuth2(c *gin.Context) {
 		u.ID = usr.ID
 	}
 	if !ext {
+		cnt := types.GetCountByUsername(u.Username)
+		if cnt > 0 {
+			u.Username = fmt.Sprintf("%s%d", u.Username, cnt)
+		}
 		_, err = config.DBEngine.InsertOne(u)
 		if err != nil {
 			types.HandleError(c, types.FailedToInsertDataToDatabase, err)
@@ -87,7 +98,7 @@ func createToken(id int64) (string, error) {
 	return jt.SignedString(config.RsaPrivateKey)
 }
 
-func getUserinfo(token string, cfg config.OAuth) (u *types.User, err error) {
+func getUserinfo(token string, cfg config.OAuthIF) (u *types.User, err error) {
 	req, _ := http.NewRequest("GET", cfg.API, nil)
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", token))
 
@@ -97,70 +108,92 @@ func getUserinfo(token string, cfg config.OAuth) (u *types.User, err error) {
 	}
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
-	ou := new(types.User)
-	var tmp1 = make(map[string]interface{})
-	var tmp2 = make(map[string]interface{})
-	var tmp3 = make(map[string]interface{})
-	err = json.Unmarshal(body, &tmp1)
-	err = json.Unmarshal(body, &tmp2)
-	err = json.Unmarshal(body, &tmp3)
-	if err != nil {
-		fmt.Println(err)
-		return nil, err
-	}
-	arr1 := strings.Split(cfg.UsernameMap, ".")
-	arr2 := strings.Split(cfg.NicknameMap, ".")
-	arr3 := strings.Split(cfg.EmailMap, ".")
-	for k, v := range arr1 {
-		if k == len(arr1)-1 {
-			ou.Username = tmp1[v].(string)
-		} else {
-			b, err := json.Marshal(tmp1[v])
-			if err != nil {
-				return nil, err
-			}
-			err = json.Unmarshal(b, &tmp1)
-			if err != nil {
-				return nil, err
-			}
-		}
-	}
-	for k, v := range arr2 {
-		if k == len(arr2)-1 {
-			ou.Nickname = tmp2[v].(string)
-		} else {
-			b, err := json.Marshal(tmp2[v])
-			if err != nil {
-				return nil, err
-			}
-			err = json.Unmarshal(b, &tmp2)
-			if err != nil {
-				return nil, err
-			}
-		}
-	}
-	for k, v := range arr3 {
-		if k == len(arr3)-1 {
-			ou.Email = tmp3[v].(string)
-		} else {
-			b, err := json.Marshal(tmp3[v])
-			if err != nil {
-				return nil, err
-			}
-			err = json.Unmarshal(b, &tmp3)
-			if err != nil {
-				return nil, err
-			}
-		}
-	}
-	u = &types.User{
-		Username: ou.Username,
-		Email:    ou.Email,
-		Nickname: ou.Nickname,
+
+	return ConvertUserInfo(body, cfg)
+	//ou := new(types.User)
+	//var tmp1 = make(map[string]interface{})
+	//var tmp2 = make(map[string]interface{})
+	//var tmp3 = make(map[string]interface{})
+	//err = json.Unmarshal(body, &tmp1)
+	//err = json.Unmarshal(body, &tmp2)
+	//err = json.Unmarshal(body, &tmp3)
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return nil, err
+	//}
+	//arr1 := strings.Split(cfg.UsernameMap, ".")
+	//arr2 := strings.Split(cfg.NicknameMap, ".")
+	//arr3 := strings.Split(cfg.EmailMap, ".")
+	//for k, v := range arr1 {
+	//	if k == len(arr1)-1 {
+	//		ou.Username = tmp1[v].(string)
+	//	} else {
+	//		b, err := json.Marshal(tmp1[v])
+	//		if err != nil {
+	//			return nil, err
+	//		}
+	//		err = json.Unmarshal(b, &tmp1)
+	//		if err != nil {
+	//			return nil, err
+	//		}
+	//	}
+	//}
+	//for k, v := range arr2 {
+	//	if k == len(arr2)-1 {
+	//		ou.Nickname = tmp2[v].(string)
+	//	} else {
+	//		b, err := json.Marshal(tmp2[v])
+	//		if err != nil {
+	//			return nil, err
+	//		}
+	//		err = json.Unmarshal(b, &tmp2)
+	//		if err != nil {
+	//			return nil, err
+	//		}
+	//	}
+	//}
+	//for k, v := range arr3 {
+	//	if k == len(arr3)-1 {
+	//		ou.Email = tmp3[v].(string)
+	//	} else {
+	//		b, err := json.Marshal(tmp3[v])
+	//		if err != nil {
+	//			return nil, err
+	//		}
+	//		err = json.Unmarshal(b, &tmp3)
+	//		if err != nil {
+	//			return nil, err
+	//		}
+	//	}
+	//}
+	//u = &types.User{
+	//	Username: ou.Username,
+	//	Email:    ou.Email,
+	//	Nickname: ou.Nickname,
+	//	Enable:   true,
+	//	Platform: cfg.Name,
+	//}
+	//return
+}
+
+func ConvertUserInfo(data []byte, o config.OAuthIF) (*types.User, error) {
+	var usr = types.User{
+		Platform: o.Name,
 		Enable:   true,
-		Platform: cfg.Name,
 	}
-	return
+	switch o.Name {
+	case "github":
+		var u config.GithubUser
+		err := json.Unmarshal(data, &u)
+		if err != nil {
+			return nil, err
+		}
+		usr.Username = u.Login
+		usr.Nickname = u.Name
+		usr.Email = u.Email
+		usr.GlobalUnique = fmt.Sprintf("github-%d", u.ID)
+	}
+	return &usr, nil
 }
 
 //

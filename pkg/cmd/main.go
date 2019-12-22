@@ -29,7 +29,7 @@ var RootCmd = &cobra.Command{
 }
 
 func init() {
-	RootCmd.AddCommand(VersionCmd, StartCmd, EnvCmd)
+	RootCmd.AddCommand(VersionCmd, StartCmd)
 	cobra.EnableCommandSorting = false
 	RootCmd.Flags().BoolVarP(&v, "version", "v", false, "show version")
 }
