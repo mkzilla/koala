@@ -2,6 +2,7 @@ package types
 
 import (
 	"time"
+
 	"github.com/mkzilla/koala/pkg/types/config"
 )
 
@@ -27,8 +28,8 @@ type User struct {
 	IsAdmin  bool   `json:"is_admin" xorm:"isAdmin"`
 }
 
-func GetCountByUsername(username string) int64{
-	cnt,_:= config.DBEngine.Table("user").Where("username = ?", username).Count()
+func GetCountByUsername(username string) int64 {
+	cnt, _ := config.DBEngine.Table("user").Where("username = ?", username).Count()
 	return cnt
 }
 

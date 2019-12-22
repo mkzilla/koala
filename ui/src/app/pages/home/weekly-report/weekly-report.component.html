@@ -1,5 +1,5 @@
 <nz-card style="width: 100%;">
-  <nz-page-header [nzGhost]="false">
+  <nz-page-header [nzGhost]="false" *ngIf="groups.length > 0">
     <nz-page-header-title>小组周报</nz-page-header-title>
     <nz-page-header-subtitle></nz-page-header-subtitle>
     <nz-page-header-extra>
@@ -10,6 +10,14 @@
       <button nz-button nzType="primary" (click)="changDate(7)">后一周<i nz-icon nzType="right"></i></button>
     </nz-page-header-extra>
   </nz-page-header>
+  <nz-alert
+    *ngIf="groups.length === 0"
+    nzType="info"
+    nzMessage="👀如果才能看组周报？"
+    nzDescription="当您加入小组的时候，会在这里按周的工作或者学习进展，数据来源于各个组成员的任务进展，组周报对所有组成员都是公开的，当你加入多个组，你的周报会对各个组公开。"
+    nzShowIcon
+  >
+  </nz-alert>
   <nz-collapse [nzBordered]="false" *ngFor="let reports of reportGroup">
     <nz-page-header [nzGhost]="false">
     <nz-page-header-title>{{reports.user.nickname}}</nz-page-header-title>
@@ -46,5 +54,4 @@
       </tr>
     </nz-collapse-panel>
   </nz-collapse>
-
 </nz-card>
