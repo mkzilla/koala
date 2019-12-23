@@ -18,6 +18,7 @@ type User struct {
 	UpdateTime *time.Time `json:"createTime" xorm:"'updateTime' created"`
 
 	Username     string `json:"username" xorm:"'username' unique"`
+	RealName     string `json:"realname" xorm:"'realname'"`
 	Nickname     string `json:"nickname" xorm:"nickname"`
 	Email        string `json:"email" xorm:"'email'"`
 	GlobalUnique string `json:"globalUnique" xorm:"'globalUnique' unique"`
@@ -29,7 +30,7 @@ type User struct {
 }
 
 func GetCountByUsername(username string) int64 {
-	cnt, _ := config.DBEngine.Table("user").Where("username = ?", username).Count()
+	cnt, _ := config.DBEngine.Table("user").Where("realname = ?", username).Count()
 	return cnt
 }
 

@@ -56,12 +56,22 @@ type BasicLogin struct {
 }
 
 type OAuthIF struct {
-	Enable   bool          `json:"enable" yaml:"enable"`
-	ClientID string        `json:"client_id" yaml:"client_id"`
-	Secret   string        `json:"secret" yaml:"secret"`
-	API      string        `json:"-" yaml:"-"`
-	Name     string        `json:"-" yaml:"-"`
-	Config   oauth2.Config `json:"-" yaml:"-"`
+	Enable            bool              `json:"enable" yaml:"enable"`
+	ClientID          string            `json:"client_id" yaml:"client_id"`
+	Secret            string            `json:"secret" yaml:"secret"`
+	API               string            `json:"api" yaml:"yaml"`
+	Name              string            `json:"name" yaml:"name"`
+	Config            oauth2.Config     `json:"-" yaml:"-"`
+	BasicOauthUserMap BasicOauthUserMap `json:"map" yaml:"map"`
+}
+
+type BasicOauthUserMap struct {
+	Username string `json:"username" yaml:"username"`
+	Nickname string `json:"nickname" yaml:"nickname"`
+	Email    string `json:"email" yaml:"email"`
+	Unique   string `json:"unique" yaml:"unique"`
+	AuthURL  string `json:"authURL" yaml:"authURL"`
+	TokenURL string `json:"tokenURL" yaml:"tokenURL"`
 }
 
 type GithubUser struct {

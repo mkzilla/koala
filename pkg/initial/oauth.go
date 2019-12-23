@@ -13,4 +13,11 @@ func InitOAuth() {
 		config.Configs.GithubLogin.API = "https://api.github.com/user"
 		config.Configs.GithubLogin.Name = "github"
 	}
+	if config.Configs.OAuthV2BasicLogin.Enable {
+		config.Configs.OAuthV2BasicLogin.Config.ClientID = config.Configs.OAuthV2BasicLogin.ClientID
+		config.Configs.OAuthV2BasicLogin.Config.ClientSecret = config.Configs.OAuthV2BasicLogin.Secret
+		config.Configs.OAuthV2BasicLogin.Config.Endpoint.AuthURL = config.Configs.OAuthV2BasicLogin.BasicOauthUserMap.AuthURL
+		config.Configs.OAuthV2BasicLogin.Config.Endpoint.TokenURL = config.Configs.OAuthV2BasicLogin.BasicOauthUserMap.TokenURL
+		config.Configs.OAuthV2BasicLogin.Name = "basic"
+	}
 }
