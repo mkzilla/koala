@@ -18,12 +18,20 @@
     </nz-form-item>
     <nz-form-item>
       <nz-form-control>
-        <a class="login-form-forgot">Forgot password</a>
         <button nz-button class="login-form-button" [nzType]="'primary'">登录</button>
       </nz-form-control>
     </nz-form-item>
   </form>
-  <button class="login-form-button" *ngIf="config.enableGithub" nz-button (click)="onOAuth('github')" [nzType]="'primary'">使用 github 账号登录</button>
+  <nz-form-control>
+    <button class="login-form-button" *ngIf="config.enableGithub" nz-button (click)="onOAuth('github')" [nzType]="'primary'">
+      <i nz-icon nzType="github" nzTheme="outline"></i>使用 GitHub 登录
+    </button>
+  </nz-form-control>
+  <nz-form-control>
+    <button class="login-form-button" *ngIf="config.enableBasicOAuthV2" nz-button (click)="onOAuth('basic')" [nzType]="'primary'">
+      <i nz-icon nzType="login" nzTheme="outline"></i>使用 OAuth2 登录
+    </button>
+  </nz-form-control>
 </div>
 <canvas class="background"></canvas>
 

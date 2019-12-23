@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -19,6 +20,8 @@ func convertStateToAuth(state string) *config.OAuthIF {
 	switch state {
 	case "github":
 		return &config.Configs.GithubLogin
+	case "basic":
+		return &config.Configs.OAuthV2BasicLogin
 	}
 	return nil
 }
@@ -108,72 +111,7 @@ func getUserinfo(token string, cfg config.OAuthIF) (u *types.User, err error) {
 	}
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
-
 	return ConvertUserInfo(body, cfg)
-	//ou := new(types.User)
-	//var tmp1 = make(map[string]interface{})
-	//var tmp2 = make(map[string]interface{})
-	//var tmp3 = make(map[string]interface{})
-	//err = json.Unmarshal(body, &tmp1)
-	//err = json.Unmarshal(body, &tmp2)
-	//err = json.Unmarshal(body, &tmp3)
-	//if err != nil {
-	//	fmt.Println(err)
-	//	return nil, err
-	//}
-	//arr1 := strings.Split(cfg.UsernameMap, ".")
-	//arr2 := strings.Split(cfg.NicknameMap, ".")
-	//arr3 := strings.Split(cfg.EmailMap, ".")
-	//for k, v := range arr1 {
-	//	if k == len(arr1)-1 {
-	//		ou.Username = tmp1[v].(string)
-	//	} else {
-	//		b, err := json.Marshal(tmp1[v])
-	//		if err != nil {
-	//			return nil, err
-	//		}
-	//		err = json.Unmarshal(b, &tmp1)
-	//		if err != nil {
-	//			return nil, err
-	//		}
-	//	}
-	//}
-	//for k, v := range arr2 {
-	//	if k == len(arr2)-1 {
-	//		ou.Nickname = tmp2[v].(string)
-	//	} else {
-	//		b, err := json.Marshal(tmp2[v])
-	//		if err != nil {
-	//			return nil, err
-	//		}
-	//		err = json.Unmarshal(b, &tmp2)
-	//		if err != nil {
-	//			return nil, err
-	//		}
-	//	}
-	//}
-	//for k, v := range arr3 {
-	//	if k == len(arr3)-1 {
-	//		ou.Email = tmp3[v].(string)
-	//	} else {
-	//		b, err := json.Marshal(tmp3[v])
-	//		if err != nil {
-	//			return nil, err
-	//		}
-	//		err = json.Unmarshal(b, &tmp3)
-	//		if err != nil {
-	//			return nil, err
-	//		}
-	//	}
-	//}
-	//u = &types.User{
-	//	Username: ou.Username,
-	//	Email:    ou.Email,
-	//	Nickname: ou.Nickname,
-	//	Enable:   true,
-	//	Platform: cfg.Name,
-	//}
-	//return
 }
 
 func ConvertUserInfo(data []byte, o config.OAuthIF) (*types.User, error) {
@@ -189,11 +127,59 @@ func ConvertUserInfo(data []byte, o config.OAuthIF) (*types.User, error) {
 			return nil, err
 		}
 		usr.Username = u.Login
+		usr.RealName = u.Login
 		usr.Nickname = u.Name
 		usr.Email = u.Email
 		usr.GlobalUnique = fmt.Sprintf("github-%d", u.ID)
+	case "basic":
+		un, err := parseValue(data, o.BasicOauthUserMap.Username)
+		if err != nil {
+			return nil, err
+		}
+		nk, err := parseValue(data, o.BasicOauthUserMap.Nickname)
+		if err != nil {
+			return nil, err
+		}
+		em, err := parseValue(data, o.BasicOauthUserMap.Email)
+		if err != nil {
+			return nil, err
+		}
+		uq, err := parseValue(data, o.BasicOauthUserMap.Unique)
+		if err != nil {
+			return nil, err
+		}
+		usr.Username = fmt.Sprintf("%s", un)
+		usr.RealName = fmt.Sprintf("%s", un)
+		usr.Nickname = fmt.Sprintf("%s", nk)
+		usr.Email = fmt.Sprintf("%s", em)
+		usr.GlobalUnique = fmt.Sprintf("%s-%v", o.Name, uq)
+
 	}
 	return &usr, nil
+}
+
+func parseValue(data []byte, m string) (interface{}, error) {
+	var tmp = make(map[string]interface{})
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return "", err
+	}
+	arr := strings.Split(m, ".")
+	for k, v := range arr {
+		if k == len(arr)-1 {
+			return tmp[v], nil
+		} else {
+			b, err := json.Marshal(tmp[v])
+			if err != nil {
+				return "", err
+			}
+			err = json.Unmarshal(b, &tmp)
+			if err != nil {
+				return "", err
+			}
+		}
+	}
+	return "", nil
 }
 
 //
