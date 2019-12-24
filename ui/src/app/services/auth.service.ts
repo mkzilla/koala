@@ -31,8 +31,8 @@ export class AuthService {
     });
   }
 
-  doGetUserInfo(): Promise<any> {
-    return this.http.get('/api/v1/userinfo', {headers: this.headers}).toPromise().catch( (error) => {
+  doGetUserInfo(username: string): Promise<any> {
+    return this.http.get('/api/v1/userinfo?username=' + username, {headers: this.headers}).toPromise().catch( (error) => {
       this.notification.error('登录失败', error.message);
     });
   }

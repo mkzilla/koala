@@ -17,7 +17,7 @@ export class AppComponent {
   user: User = new User();
 
   constructor(private authService: AuthService, private cache: CacheService) {
-    this.authService.doGetUserInfo().then((response: any) => {
+    this.authService.doGetUserInfo('').then((response: any) => {
       if (response !== undefined) {
         this.user = response;
         this.cache.changeUser(this.user);

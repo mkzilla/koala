@@ -1,3 +1,12 @@
+<nz-descriptions nzBordered [nzSize]="small">
+  <nz-descriptions-item nzTitle="username">{{username}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="nickname">{{user.nickname}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="id">{{user.id}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="身份"><span *ngIf="user.is_admin">管理员</span><span *ngIf="!user.is_admin">普通用户</span></nz-descriptions-item>
+  <nz-descriptions-item nzTitle="邮箱"><a href="mailto:{{user.email}}">{{user.email}}</a></nz-descriptions-item>
+  <nz-descriptions-item nzTitle="手机号">{{user.phone}}</nz-descriptions-item>
+</nz-descriptions>
+
 <div nz-row [nzGutter]="8">
   <div nz-col [nzSpan]="12" style="margin-top:10px;" *ngFor="let task of tasks">
     <nz-card [nzTitle]="nzTitle" style="height: 200px;overflow-y:scroll;">
