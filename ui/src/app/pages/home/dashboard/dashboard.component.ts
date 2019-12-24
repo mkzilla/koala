@@ -13,6 +13,7 @@ import { TaskService } from '../../../services/task.service';
 })
 export class DashboardComponent implements OnInit {
   kanban: Kanban = new Kanban();
+  showAlert = false;
 
   constructor(private taskService: TaskService, private notification: NzNotificationService) { }
 
@@ -28,6 +29,9 @@ export class DashboardComponent implements OnInit {
         response.done = [];
       }
       this.kanban = response;
+      if (this.kanban.will.length + this.kanban.doing.length + this.kanban.done.length < 5) {
+        this.showAlert = true;
+      }
     });
   }
 
