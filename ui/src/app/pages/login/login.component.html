@@ -1,6 +1,6 @@
 <div class="container">
-  <h1 style="text-align: center;">koala v{{version}}</h1>
-  <p style="text-align: center;">企业级任务-绩效管理平台</p>
+  <p><strong style="font-size: xx-large;color: black;">koala v{{version}}</strong></p>
+  <p style="text-align: center;"><strong>为高效能人士服务</strong></p>
   <form *ngIf="config.enablePassword" nz-form [formGroup]="basicLogin" class="login-form" (ngSubmit)="onLogin()">
     <nz-form-item>
       <nz-form-control nzErrorTip="Please input your username!">
@@ -33,6 +33,6 @@
     </button>
   </nz-form-control>
 </div>
-<canvas class="background"></canvas>
+<div class="background"></div>
 
 

@@ -13,7 +13,7 @@
 .container {
   top: 30%;
   position: absolute;
-  left: 40%;
+  left: 10%;
   width: 400px;
   max-height: 453px;
   overflow: auto;
@@ -29,5 +29,8 @@
   left: 0;
   right: 0;
   z-index: -1;
-  background-color: #000;
+  width: 100%;
+  height: 100%;
+  background-image:url("/assets/koala.png");
 }
+
