@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as particlesJS from 'particlesjs/dist/particles';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import Config from '../../models/config';
@@ -25,11 +24,6 @@ export class LoginComponent implements OnInit {
     this.basicLogin = this.fb.group({
       username: [null, [Validators.required]],
       password: [null, [Validators.required]],
-    });
-    particlesJS.init({
-      selector: '.background',
-      color: ['#DA0463', '#404B69', '#DBEDF3'],
-      connectParticles: true
     });
     this.authService.doGetConfig().then((r) => {
         this.config = r;

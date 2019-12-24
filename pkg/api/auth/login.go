@@ -337,6 +337,16 @@ func IsGroupUser(c *gin.Context) {
 }
 
 func UserInfo(c *gin.Context) {
+	if c.Query("username") != "" {
+		var u types.User
+		_, err := config.DBEngine.Where("username = ?", c.Query("username")).Get(&u)
+		if err != nil {
+			types.HandleError(c, types.FailedToGetDataFromDB, err)
+			return
+		}
+		c.JSON(http.StatusOK, u)
+
+	}
 	usr, _ := c.Get(config.User)
 	c.JSON(http.StatusOK, usr)
 }
