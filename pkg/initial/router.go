@@ -17,6 +17,8 @@ func InitRouter() {
 	config.GinEngine.POST("/api/v1beta/login", auth.LoginWithPassword)
 	config.GinEngine.GET("/api/v1beta/login", auth.LoginWithOAuth2)
 	config.GinEngine.GET("/api/v1beta/config", cfv2.Echo)
+	config.GinEngine.POST("/api/v1beta/register", auth.Request)
+	config.GinEngine.POST("/api/v1beta/password", auth.RegisterAuth, auth.InitPassword)
 
 	apv1 := config.GinEngine.Group("/api/v1").Use(auth.Auth, auth.IsGroupUser, middleware.Page)
 	apv1.GET("/userinfo", auth.UserInfo)

@@ -9,15 +9,16 @@ import (
 )
 
 type Config struct {
-	Name              string     `json:"name" yaml:"name"`
-	Homepage          string     `json:"homepage" yaml:"homepage"`
-	Addr              string     `json:"addr" yaml:"addr"`
-	DataSource        DataSource `json:"datasource" yaml:"datasource"`
-	BasicLogin        BasicLogin `json:"basicLogin" yaml:"basicLogin"`
-	GithubLogin       OAuthIF    `json:"githubLogin" yaml:"githubLogin"`
-	GoogleLogin       OAuthIF    `json:"googleLogin" yaml:"googleLogin"`
-	WechatLogin       OAuthIF    `json:"wechatLogin" yaml:"wechatLogin"`
-	OAuthV2BasicLogin OAuthIF    `json:"oauthV2BasicLogin" yaml:"oauthV2BasicLogin"`
+	Name              string        `json:"name" yaml:"name"`
+	Homepage          string        `json:"homepage" yaml:"homepage"`
+	Addr              string        `json:"addr" yaml:"addr"`
+	DataSource        DataSource    `json:"datasource" yaml:"datasource"`
+	BasicLogin        BasicLogin    `json:"basicLogin" yaml:"basicLogin"`
+	BasicRegister     BasicRegister `json:"basicRegister" yaml:"basicRegister"`
+	GithubLogin       OAuthIF       `json:"githubLogin" yaml:"githubLogin"`
+	GoogleLogin       OAuthIF       `json:"googleLogin" yaml:"googleLogin"`
+	WechatLogin       OAuthIF       `json:"wechatLogin" yaml:"wechatLogin"`
+	OAuthV2BasicLogin OAuthIF       `json:"oauthV2BasicLogin" yaml:"oauthV2BasicLogin"`
 }
 
 func (c *Config) LoadFromYaml(path string) error {
@@ -53,6 +54,12 @@ type DataSource struct {
 
 type BasicLogin struct {
 	Enable bool `json:"enable" yaml:"enable"`
+}
+
+type BasicRegister struct {
+	Enable bool   `json:"enable" yaml:"enable"`
+	Smtp   string `json:"smtp" yaml:"smtp"`
+	Sender string `json:"sender" yaml:"sender"`
 }
 
 type OAuthIF struct {
