@@ -38,6 +38,6 @@ type TaskLog struct {
 	UserID     int64      `json:"user_id" xorm:"'user_id'"`
 	Username   string     `json:"username" xorm:"username"`
 	Behavior   string     `json:"behavior" xorm:"'behavior'"`
-	FromValue  string     `json:"from_value" xorm:"varchar(10000)"`
-	ToValue    string     `json:"to_value" xorm:"varchar(10000)"`
+	FromValue  string     `json:"from_value" xorm:"varchar(5000)"`
+	ToValue    string     `json:"to_value" xorm:"varchar(5000)"`
 }
