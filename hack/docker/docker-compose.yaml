@@ -1,0 +1,63 @@
+version: '3'
+services:
+  mysql:
+    image: dockerhub.azk8s.cn/library/mariadb:10.4
+    environment:
+      - MYSQL_PASSWORD=koala
+      - MYSQL_DATABASE=koala
+      - MYSQL_USER=koala
+      - MYSQL_ROOT_PASSWORD=koala
+      - MYSQL_HOST=172.19.0.3
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    expose:
+      - "3306"
+    volumes:
+      - ./:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      default:
+      internal:
+  apiserver:
+    image: chengtian/koala-apiserver:v0.0.1
+    command:
+    - start
+    - -s=koala:koala@tcp(mysql:3306)/koala
+    restart: always
+    volumes:
+    - ../hack/:/etc/koala/
+    command:
+    -
+    depends_on:
+    - mysql
+    ports:
+    - "9826:9826"
+    networks:
+      internal:
+  smtp:
+    image: tianon/exim4:latest
+    expose:
+      - "25"
+    ports:
+    - "10025:25"
+  ui:
+    image: chengtian/koala:v0.0.1
+    depends_on:
+    - apiserver
+    restart: always
+    expose:
+    - "80"
+    - "443"
+    ports:
+    - "80:80"
+    - "443:443"
+    networks:
+      default:
+      internal:
+
+networks:
+  default:
+  internal:
+    internal: true
