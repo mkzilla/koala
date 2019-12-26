@@ -17,6 +17,8 @@ export class RegisterComponent implements OnInit {
   password = '';
   email = '';
 
+  passwordVisible = false;
+
 
   constructor(private fb: FormBuilder, private authService: AuthService,
               private route: ActivatedRoute, private notification: NzNotificationService, private router: Router) {
