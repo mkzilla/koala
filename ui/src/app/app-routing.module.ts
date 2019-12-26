@@ -10,10 +10,13 @@ import {UsersManageComponent} from './pages/home/users-manage/users-manage.compo
 import {GroupsManageComponent} from './pages/home/groups-manage/groups-manage.component';
 import {StatisticsComponent} from './pages/home/statistics/statistics.component';
 import {ViewGroupComponent} from './pages/home/groups-manage/view-group/view-group.component';
+import {RegisterComponent} from './pages/register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'password/:username', component: RegisterComponent },
   { path: 'task/:id', component: ViewTaskComponent },
   { path: 'homepage/:username', component: HomepageComponent },
   { path: 'dashboard', component: DashboardComponent },

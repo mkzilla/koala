@@ -1,0 +1,36 @@
+.login-form {
+  max-width: 300px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+.container {
+  top: 30%;
+  position: absolute;
+  left: 10%;
+  width: 333px;
+  max-height: 453px;
+  overflow: auto;
+  margin: auto;
+  padding: 10px 50px 20px 50px;
+  background-color: #fff;
+  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.06), 0 1px 0 0 rgba(0, 0, 0, 0.02);
+}
+
+.background {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-image:url("/assets/koala.png");
+}
+

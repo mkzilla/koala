@@ -20,10 +20,29 @@ export class AuthService {
     return this.http.get('/api/v1beta/config', {headers: this.headers}).toPromise();
   }
 
+  doRegister(data: any) {
+    this.http.post('/api/v1beta/register', data).toPromise().then(
+      (response: any) => {
+        this.notification.success('请登录你的邮箱从通知邮件的链接输入密码完成注册', '如果收信箱没有邮件，请检查垃圾箱');
+      }
+    ).catch( (error) => {
+      this.notification.error('申请注册失败', error.message);
+    });
+  }
+
+  doPassword(token: string, data: any): Promise<any> {
+    return this.http.post('/api/v1beta/password?token=' + token, data).toPromise().then(
+      (response: any) => {
+        this.notification.success('请登录你的邮箱从通知邮件的链接输入密码完成注册', '如果收信箱没有邮件，请检查垃圾箱');
+      }
+    ).catch( (error) => {
+      this.notification.error('申请注册失败', error.message);
+    });
+  }
+
   doBasicLogin(data: any, next = '/'): Promise<any> {
     return this.http.post('/api/v1beta/login', data).toPromise().then(
       (response: any) => {
-        localStorage.setItem('jsonwebtoken', response);
         window.location.href = next;
       }
     ).catch( (error) => {
@@ -32,9 +51,7 @@ export class AuthService {
   }
 
   doGetUserInfo(username: string): Promise<any> {
-    return this.http.get('/api/v1/userinfo?username=' + username, {headers: this.headers}).toPromise().catch( (error) => {
-      this.notification.error('登录失败', error.message);
-    });
+    return this.http.get('/api/v1/userinfo?username=' + username, {headers: this.headers}).toPromise();
   }
 
   doSearchUser(username: string): Promise<any> {

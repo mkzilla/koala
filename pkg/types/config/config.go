@@ -9,15 +9,16 @@ import (
 )
 
 type Config struct {
-	Name              string     `json:"name" yaml:"name"`
-	Homepage          string     `json:"homepage" yaml:"homepage"`
-	Addr              string     `json:"addr" yaml:"addr"`
-	DataSource        DataSource `json:"datasource" yaml:"datasource"`
-	BasicLogin        BasicLogin `json:"basicLogin" yaml:"basicLogin"`
-	GithubLogin       OAuthIF    `json:"githubLogin" yaml:"githubLogin"`
-	GoogleLogin       OAuthIF    `json:"googleLogin" yaml:"googleLogin"`
-	WechatLogin       OAuthIF    `json:"wechatLogin" yaml:"wechatLogin"`
-	OAuthV2BasicLogin OAuthIF    `json:"oauthV2BasicLogin" yaml:"oauthV2BasicLogin"`
+	Name              string        `json:"name" yaml:"name"`
+	Homepage          string        `json:"homepage" yaml:"homepage"`
+	Addr              string        `json:"addr" yaml:"addr"`
+	DataSource        DataSource    `json:"datasource" yaml:"datasource"`
+	BasicLogin        BasicLogin    `json:"basicLogin" yaml:"basicLogin"`
+	BasicRegister     BasicRegister `json:"basicRegister" yaml:"basicRegister"`
+	GithubLogin       OAuthIF       `json:"githubLogin" yaml:"githubLogin"`
+	GoogleLogin       OAuthIF       `json:"googleLogin" yaml:"googleLogin"`
+	WechatLogin       OAuthIF       `json:"wechatLogin" yaml:"wechatLogin"`
+	OAuthV2BasicLogin OAuthIF       `json:"oauthV2BasicLogin" yaml:"oauthV2BasicLogin"`
 }
 
 func (c *Config) LoadFromYaml(path string) error {
@@ -44,6 +45,14 @@ func (c *Config) LoadFromJson(path string) error {
 	return nil
 }
 
+func (c *Config) Read(path string) string {
+	s, readErr := ioutil.ReadFile(path)
+	if readErr != nil {
+		return path
+	}
+	return string(s)
+}
+
 type DataSource struct {
 	Driver string `json:"driver" yaml:"driver"`
 	Source string `json:"source" yaml:"source"`
@@ -53,6 +62,14 @@ type DataSource struct {
 
 type BasicLogin struct {
 	Enable bool `json:"enable" yaml:"enable"`
+}
+
+type BasicRegister struct {
+	Enable   bool   `json:"enable" yaml:"enable"`
+	Smtp     string `json:"smtp" yaml:"smtp"`
+	Sender   string `json:"sender" yaml:"sender"`
+	Subject  string `json:"subject" yaml:"subject"`
+	Template string `json:"template" yaml:"template"`
 }
 
 type OAuthIF struct {

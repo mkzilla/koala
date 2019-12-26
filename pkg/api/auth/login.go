@@ -182,15 +182,17 @@ func parseValue(data []byte, m string) (interface{}, error) {
 	return "", nil
 }
 
+type uLogin struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
 //
 // 用户 Login 的时候，需要传入登录方式
 func LoginWithPassword(c *gin.Context) {
-	var u = struct {
-		Username string `json:"username"`
-		Password string `json:"password"`
-	}{}
+	var u = uLogin{}
 	err := c.ShouldBind(&u)
-	if err != nil {
+	if err != nil || u.Username == "" || u.Password == "" {
 		types.HandleError(c, types.BadRequestParameter, err)
 		return
 	}
@@ -226,6 +228,28 @@ func LoginWithPassword(c *gin.Context) {
 		return
 	}
 	types.HandleError(c, types.NoSuchUser, nil)
+}
+
+func RegisterAuth(c *gin.Context) {
+	tk := c.Query("token")
+	var claim config.Token
+	jwt.ParseWithClaims(tk, &claim, func(token *jwt.Token) (interface{}, error) {
+		return config.RsaPrivateKey.PublicKey, nil
+	})
+	if claim.AUD == 0 {
+		c.AbortWithStatus(http.StatusUnauthorized)
+	}
+	var usr = types.User{
+		ID: claim.AUD,
+	}
+	ext, err := config.DBEngine.Get(&usr)
+	if err != nil {
+		c.AbortWithStatus(http.StatusInternalServerError)
+	}
+	if !ext || usr.Enable {
+		c.AbortWithStatus(http.StatusUnauthorized)
+	}
+	c.Set(config.User, usr)
 }
 
 func Auth(c *gin.Context) {
@@ -345,7 +369,7 @@ func UserInfo(c *gin.Context) {
 			return
 		}
 		c.JSON(http.StatusOK, u)
-
+		return
 	}
 	usr, _ := c.Get(config.User)
 	c.JSON(http.StatusOK, usr)

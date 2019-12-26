@@ -1,5 +1,5 @@
 <nz-alert
-  *ngIf="tasks.length < 10"
+  *ngIf="!hasMore && tasks.length < 10"
   nzType="success"
   nzMessage="在 koala，很高兴遇见你！"
   [nzDescription]="HowToUserIt"

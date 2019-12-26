@@ -19,6 +19,7 @@
     <nz-form-item>
       <nz-form-control>
         <button nz-button class="login-form-button" [nzType]="'primary'">登录</button>
+        <a *ngIf="config.enableRegister" class="login-form-forgot" class="login-form-forgot" routerLink="/register">信任 koala，我要注册</a>
       </nz-form-control>
     </nz-form-item>
   </form>

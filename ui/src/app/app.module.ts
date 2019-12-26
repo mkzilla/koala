@@ -42,6 +42,7 @@ import {StatisticsComponent} from './pages/home/statistics/statistics.component'
 import {ViewGroupComponent} from './pages/home/groups-manage/view-group/view-group.component';
 import {CreateEditOkrComponent} from './pages/home/create-edit-okr/create-edit-okr.component';
 import {HomepageOkrComponent} from './pages/home/homepage/homepage-okr/homepage-okr.component';
+import {RegisterComponent} from './pages/register/register.component';
 
 registerLocaleData(zh);
 
@@ -49,6 +50,7 @@ registerLocaleData(zh);
   declarations: [
     AppComponent,
     LoginComponent,
+    RegisterComponent,
     HomeComponent,
     HomepageComponent,
     HomepageOverviewComponent,

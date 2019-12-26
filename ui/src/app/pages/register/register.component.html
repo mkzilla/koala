@@ -1,0 +1,41 @@
+<div class="container">
+  <p><strong style="font-size: large;">非常欢迎你注册 koala！</strong></p>
+  <p style="text-align: center;"><strong style="color: darkblue;">为高效能人士服务</strong></p>
+  <div *ngIf="!username">
+    <nz-input-group [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateEmail">
+      <input type="text" nz-input placeholder="请输入你的邮箱" [(ngModel)]="user.email" />
+    </nz-input-group>
+    <ng-template #prefixTemplateEmail><i nz-icon nzType="mail"></i></ng-template>
+    <ng-template #suffixTemplateInfo><i nz-icon nz-tooltip nzTitle="请使用中国大陆内运营的常用邮箱" nzType="info-circle"></i></ng-template>
+    <br /><br />
+    <button class="login-form-button" nz-button (click)="onRegister()" [nzType]="'primary'">
+      <i nz-icon nzType="pull-request" nzTheme="outline"></i>申请注册
+    </button>
+  </div>
+  <div *ngIf="username">
+    <p><strong>{{username}},请设置密码以登录 koala</strong></p>
+    <nz-input-group [nzSuffix]="suffixTemplate">
+      <input [type]="passwordVisible ? 'text' : 'password'" nz-input
+        placeholder="请输入密码"
+        [(ngModel)]="user.password"
+      />
+    </nz-input-group>
+    <br /><br />
+    <nz-input-group [nzSuffix]="suffixTemplate">
+      <input [type]="passwordVisible ? 'text' : 'password'" nz-input
+             placeholder="请再次确认密码"
+             [(ngModel)]="password"
+      />
+    </nz-input-group>
+    <ng-template #suffixTemplate>
+      <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+    </ng-template>
+    <br /><br />
+    <button class="login-form-button" nz-button (click)="onPassword()" [nzType]="'primary'">
+      <i nz-icon nzType="safety" nzTheme="outline"></i>确认密码
+    </button>
+  </div>
+</div>
+<div class="background"></div>
+
+
