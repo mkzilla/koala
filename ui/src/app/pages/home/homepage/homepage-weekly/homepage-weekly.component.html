@@ -6,7 +6,7 @@
     <button nz-button nzType="primary" (click)="changDate(7)">后一周<i nz-icon nzType="right"></i></button>
   </nz-page-header-extra>
 </nz-page-header>
-<nz-collapse [nzBordered]="false">
+<nz-collapse [nzBordered]="false" style="min-height: 400px;">
   <nz-collapse-panel *ngFor="let report of reports.reports" [nzHeader]="nzTitle" [nzExtra]="extra" [nzActive]="true">
     <ng-template #nzTitle>
       <a routerLink="/task/{{report.task.id}}">{{report.task.title}}</a>
