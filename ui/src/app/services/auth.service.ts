@@ -33,7 +33,7 @@ export class AuthService {
   doPassword(token: string, data: any): Promise<any> {
     return this.http.post('/api/v1beta/password?token=' + token, data).toPromise().then(
       (response: any) => {
-        this.notification.error('请登录你的邮箱从通知邮件的链接输入密码完成注册', '如果收信箱没有邮件，请检查垃圾箱');
+        this.notification.success('请登录你的邮箱从通知邮件的链接输入密码完成注册', '如果收信箱没有邮件，请检查垃圾箱');
       }
     ).catch( (error) => {
       this.notification.error('申请注册失败', error.message);

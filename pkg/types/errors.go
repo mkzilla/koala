@@ -21,6 +21,7 @@ var (
 	NoSuchNotification           = fmt.Errorf("no such notification")
 	GroupLimit                   = fmt.Errorf("Each person can only join up to %d groups", 3)
 	FailedToInsertDataToDatabase = fmt.Errorf("failed to insert data")
+	FailedToSendEmail            = fmt.Errorf("failed to send email")
 )
 
 func HandleError(c *gin.Context, err error, inner error) {
@@ -53,6 +54,8 @@ func HandleError(c *gin.Context, err error, inner error) {
 		c.AbortWithStatusJSON(http.StatusForbidden, err.Error())
 	case InBlackList:
 		c.AbortWithStatusJSON(http.StatusForbidden, err.Error())
+	case FailedToSendEmail:
+		c.AbortWithStatusJSON(http.StatusInternalServerError, err.Error())
 	default:
 		c.AbortWithStatusJSON(http.StatusForbidden, err.Error())
 	}

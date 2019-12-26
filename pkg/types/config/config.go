@@ -45,6 +45,14 @@ func (c *Config) LoadFromJson(path string) error {
 	return nil
 }
 
+func (c *Config) Read(path string) string {
+	s, readErr := ioutil.ReadFile(path)
+	if readErr != nil {
+		return path
+	}
+	return string(s)
+}
+
 type DataSource struct {
 	Driver string `json:"driver" yaml:"driver"`
 	Source string `json:"source" yaml:"source"`
@@ -57,9 +65,11 @@ type BasicLogin struct {
 }
 
 type BasicRegister struct {
-	Enable bool   `json:"enable" yaml:"enable"`
-	Smtp   string `json:"smtp" yaml:"smtp"`
-	Sender string `json:"sender" yaml:"sender"`
+	Enable   bool   `json:"enable" yaml:"enable"`
+	Smtp     string `json:"smtp" yaml:"smtp"`
+	Sender   string `json:"sender" yaml:"sender"`
+	Subject  string `json:"subject" yaml:"subject"`
+	Template string `json:"template" yaml:"template"`
 }
 
 type OAuthIF struct {

@@ -9,6 +9,8 @@ import (
 	"github.com/mkzilla/koala/pkg/types"
 	"github.com/mkzilla/koala/pkg/types/config"
 	"github.com/mkzilla/koala/pkg/utils"
+
+	log "github.com/sirupsen/logrus"
 )
 
 func Request(c *gin.Context) {
@@ -32,8 +34,7 @@ func Request(c *gin.Context) {
 	}
 	_, err := config.DBEngine.InsertOne(&usr)
 	if err != nil {
-		types.HandleError(c, types.FailedToInsertDataToDatabase, err)
-		return
+		log.WithError(err).WithField("email", usr.Email).Warn("failed to insert email message")
 	}
 	token, err := createToken(usr.ID)
 	if err != nil {
@@ -41,7 +42,12 @@ func Request(c *gin.Context) {
 		return
 	}
 	url := fmt.Sprintf("%s/password/%s?token=%s", config.Configs.Homepage, usr.Username, token)
-	utils.SendMail(config.Configs.BasicRegister.Smtp, config.Configs.BasicRegister.Sender, usr.Email, "欢迎注册考拉", url)
+	body := strings.ReplaceAll(config.Configs.BasicRegister.Template, "URL", url)
+	err = utils.SendMail(config.Configs.BasicRegister.Smtp, config.Configs.BasicRegister.Sender, usr.Email, config.Configs.BasicRegister.Subject, body)
+	if err != nil {
+		types.HandleError(c, types.FailedToSendEmail, err)
+		return
+	}
 	c.JSON(http.StatusOK, nil)
 }
 

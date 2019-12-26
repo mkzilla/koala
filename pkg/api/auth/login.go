@@ -369,7 +369,7 @@ func UserInfo(c *gin.Context) {
 			return
 		}
 		c.JSON(http.StatusOK, u)
-
+		return
 	}
 	usr, _ := c.Get(config.User)
 	c.JSON(http.StatusOK, usr)
