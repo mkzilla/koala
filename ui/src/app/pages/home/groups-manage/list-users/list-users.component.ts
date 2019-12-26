@@ -17,6 +17,10 @@ export class ListUsersComponent implements OnInit {
   username: string;
   me = new User();
 
+  removeusername = '';
+  alertRemove = false;
+  alertCheckout = false;
+
   constructor(private manager: ManagerService, private notification: NzNotificationService, private cache: CacheService) {}
 
   showModal(group: Group): void {

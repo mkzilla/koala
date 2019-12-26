@@ -11,6 +11,7 @@ import {NzNotificationService} from 'ng-zorro-antd/notification';
 export class CreateUserComponent implements OnInit {
   user: User = new User();
   isVisible = false;
+  passwordVisible = false;
 
   constructor(private manager: ManagerService, private notification: NzNotificationService) {}
 

@@ -12,12 +12,12 @@
     <nz-tag [nzColor]="'#8A2BE2'" *ngIf="task.priority == 4">很紧急</nz-tag>
     <nz-tag [nzColor]="'#9933FA'" *ngIf="task.priority == 5">极其紧急</nz-tag>
 
-    <nz-tag [nzColor]="'#FFB6C1'" *ngIf="task.state == '0'">没有进展</nz-tag>
-    <nz-tag [nzColor]="'#FFD700'" *ngIf="task.state == '1'">即将开始</nz-tag>
-    <nz-tag [nzColor]="'#32CD32'" *ngIf="task.state == '2'">进行中</nz-tag>
-    <nz-tag [nzColor]="'#228B22'" *ngIf="task.state == '3'">完成</nz-tag>
-    <nz-tag [nzColor]="'#E3170D'" *ngIf="task.state == '4'">取消</nz-tag>
-    <nz-tag [nzColor]="'#FFD71f'" *ngIf="task.state == '5'">暂停</nz-tag>
+    <nz-tag [nzColor]="'#FFB6C1'" *ngIf="task.state == 0">没有进展</nz-tag>
+    <nz-tag [nzColor]="'#FFD700'" *ngIf="task.state == 1">即将开始</nz-tag>
+    <nz-tag [nzColor]="'#32CD32'" *ngIf="task.state == 2">进行中</nz-tag>
+    <nz-tag [nzColor]="'#228B22'" *ngIf="task.state == 3">完成</nz-tag>
+    <nz-tag [nzColor]="'#E3170D'" *ngIf="task.state == 4">取消</nz-tag>
+    <nz-tag [nzColor]="'#FFD71f'" *ngIf="task.state == 5">暂停</nz-tag>
 
     <nz-tag *ngIf="task.assign_to !== 0">{{task.user.nickname}}</nz-tag>
     <quill-view [content]="task.desc" format="text" theme="snow"></quill-view>
