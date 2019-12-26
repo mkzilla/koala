@@ -1,0 +1,40 @@
+{
+  "name":"mkzilla koala",
+  "homepage":"http://127.0.0.1:4200",
+  "addr":":9826",
+  "datasource": {
+    "driver":"mysql",
+    "source":"root:password@tcp(127.0.0.1:3306)/koala",
+    "debug": true,
+    "init": true
+  },
+  "basicLogin": {
+    "enable": true
+  },
+  "basicRegister": {
+    "enable": true,
+    "smtp": "127.0.0.1:10025",
+    "sender": "no-reply@mkzilla.com",
+    "template":"./hack/register.html",
+    "subject":"欢迎注册 koala 管理你的高效能人生"
+  },
+  "githubLogin": {
+    "enable": true,
+    "client_id": "github_client_id",
+    "secret":"github_secret"
+  },
+  "oauthV2BasicLogin": {
+    "enable": true,
+    "client_id": "client_id",
+    "secret": "secret",
+    "api": "https://api.github.com/user",
+    "map": {
+      "authURL": "https://github.com/login/oauth/authorize",
+      "tokenURL": "https://github.com/login/oauth/access_token",
+      "username": "login",
+      "nickname": "name",
+      "unique": "id",
+      "email": "email"
+    }
+  }
+}
