@@ -66,7 +66,9 @@ type BasicLogin struct {
 
 type BasicRegister struct {
 	Enable   bool   `json:"enable" yaml:"enable"`
-	Smtp     string `json:"smtp" yaml:"smtp"`
+	Hostname string `json:"hostname" yaml:"hostname"`
+	Port     int64  `json:"port" yaml:"port"`
+	Password string `json:"password" yaml:"password"`
 	Sender   string `json:"sender" yaml:"sender"`
 	Subject  string `json:"subject" yaml:"subject"`
 	Template string `json:"template" yaml:"template"`

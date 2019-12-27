@@ -43,7 +43,9 @@ func Request(c *gin.Context) {
 	}
 	url := fmt.Sprintf("%s/password/%s?token=%s", config.Configs.Homepage, usr.Username, token)
 	body := strings.ReplaceAll(config.Configs.BasicRegister.Template, "URL", url)
-	err = utils.SendMail(config.Configs.BasicRegister.Smtp, config.Configs.BasicRegister.Sender, usr.Email, config.Configs.BasicRegister.Subject, body)
+	err = utils.SendMailWithPassword(config.Configs.BasicRegister.Hostname,
+		config.Configs.BasicRegister.Port, config.Configs.BasicRegister.Sender, config.Configs.BasicRegister.Password,
+		usr.Email, config.Configs.BasicRegister.Subject, body)
 	if err != nil {
 		types.HandleError(c, types.FailedToSendEmail, err)
 		return
