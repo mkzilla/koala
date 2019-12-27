@@ -55,6 +55,7 @@ func HandleError(c *gin.Context, err error, inner error) {
 	case InBlackList:
 		c.AbortWithStatusJSON(http.StatusForbidden, err.Error())
 	case FailedToSendEmail:
+		log.WithError(inner).Warn(err.Error())
 		c.AbortWithStatusJSON(http.StatusInternalServerError, err.Error())
 	default:
 		c.AbortWithStatusJSON(http.StatusForbidden, err.Error())

@@ -13,8 +13,10 @@
   },
   "basicRegister": {
     "enable": true,
-    "smtp": "127.0.0.1:10025",
-    "sender": "no-reply@mkzilla.com",
+    "hostname":"smtp.qq.com",
+    "port":587,
+    "sender": "792400644@qq.com",
+    "password":"password",
     "template":"./hack/register.html",
     "subject":"欢迎注册 koala 管理你的高效能人生"
   },
