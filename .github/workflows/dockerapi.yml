@@ -21,8 +21,10 @@ jobs:
     - name: Build
       run: GOOS=linux GOARCH=amd64 go build -o koala ./pkg/cmd/
     - name: Build the Docker image
-      run: docker build . --file Dockerfile.apiserver --tag chengtian/koala-apiserver:tmp
+      run: docker build . --file Dockerfile.apiserver --tag chengtian/koala-apiserver:latest
     - name: Docker Login
       run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+    - name: Push latest image
+      run: docker push chengtian/koala-apiserver:latest
     - name: Push the docker image
-      run: export v=$(date +%s) && docker tag chengtian/koala-apiserver:tmp chengtian/koala-apiserver:alpha-$v && docker push chengtian/koala-apiserver:alpha-$v
+      run: export v=$(date +%s) && docker tag chengtian/koala-apiserver:latest chengtian/koala-apiserver:alpha-$v && docker push chengtian/koala-apiserver:alpha-$v
