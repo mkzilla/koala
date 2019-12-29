@@ -4,7 +4,7 @@
   "addr":":9826",
   "datasource": {
     "driver":"mysql",
-    "source":"root:password@tcp(127.0.0.1:3306)/koala",
+    "source":"koala:password@tcp(db:3306)/koala",
     "debug": true,
     "init": true
   },

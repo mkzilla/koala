@@ -15,3 +15,12 @@
 - 支持自动生成周报
 - ……
 
+## 快速使用
+```bash
+$ cd && git clone https://github.com/mkzilla/koala.git
+$ # 请按需编辑编辑 koala/hack/docker/koala.json 这个配置文件
+$ cd koala/hack/docker && sudo docker-compose up
+$ # 访问 127.0.0.1 即可
+
+```
+
