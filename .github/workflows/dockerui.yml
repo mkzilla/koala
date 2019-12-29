@@ -11,6 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build frontend code
-      run: docker pull node:latest && docker run -v ui:/ui --entrypoint="cd /ui && npm install && npm run build" node:latest
+      run: pwd
     - name: Build the Docker image
       run: docker build . --file Dockerfile.ui --tag chengtian/koala:$(date +%s)
