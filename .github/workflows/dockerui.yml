@@ -15,8 +15,10 @@ jobs:
     - name: Build frontend code
       run: cd ui && npm install && npm run build
     - name: Build the Docker image
-      run: docker build . --file Dockerfile.ui --tag chengtian/koala:tmp
+      run: docker build . --file Dockerfile.ui --tag chengtian/koala:latest
     - name: Docker Login
       run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+    - name: Push latest image
+      run: docker push chengtian/koala:latest
     - name: Push the docker image
-      run: export v=$(date +%s) && docker tag chengtian/koala:tmp chengtian/koala:alpha-$v && docker push chengtian/koala:alpha-$v
+      run: export v=$(date +%s) && docker tag chengtian/koala:latest chengtian/koala:alpha-$v && docker push chengtian/koala:alpha-$v
