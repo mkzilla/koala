@@ -1,4 +1,4 @@
-<nz-modal [(nzVisible)]="createObj || editObj" nzTitle="创建/编辑目标（Objective）" (nzOnCancel)="handleCancel()" (nzOnOk)="handleConfirmCreateObj()">
+<nz-modal [(nzVisible)]="createObj || editObj" nzTitle="创建/编辑目标（Objective）" (nzOnCancel)="handleCancel()" (nzOnOk)="handleConfirmCreateObj()" nzWidth="75%">
   <nz-input-group [nzSuffix]="suffixTemplate" style="margin-bottom: 10px;">
     <input type="text" nz-input [(ngModel)]="objective.title" placeholder="请简明扼要描述目标标题" />
   </nz-input-group>
@@ -46,8 +46,12 @@
   <div style="margin-bottom: 10px;margin-top: 10px;">
     <strong>关键结果</strong>
   </div>
-  <quill-editor [(ngModel)]="objective.keyResults" placeholder="请精确描述目标的关键结果" format="html" theme="snow" [styles]="{height: '100px'}">
+  <quill-editor [(ngModel)]="objective.keyResults" placeholder="请精确描述目标的关键结果" format="html" theme="snow" [styles]="{height: '150px'}">
     <div quill-editor-toolbar>
+      <span class="ql-formats">
+        <select class="ql-font"></select>
+        <select class="ql-size"></select>
+      </span>
       <span class="ql-formats">
         <button class="ql-bold"></button>
         <button class="ql-italic"></button>
@@ -59,17 +63,32 @@
         <select class="ql-background"></select>
       </span>
       <span class="ql-formats">
+        <button class="ql-script" value="sub"></button>
+        <button class="ql-script" value="super"></button>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-header" value="1"></button>
+        <button class="ql-header" value="2"></button>
+        <button class="ql-blockquote"></button>
+        <button class="ql-code-block"></button>
+      </span>
+      <span class="ql-formats">
         <button class="ql-list" value="ordered"></button>
         <button class="ql-list" value="bullet"></button>
-        <select class="ql-align">
-          <option selected></option>
-          <option value="center"></option>
-          <option value="right"></option>
-          <option value="justify"></option>
-        </select>
+        <button class="ql-indent" value="-1"></button>
+        <button class="ql-indent" value="+1"></button>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-direction" value="rtl"></button>
+        <select class="ql-align"></select>
       </span>
       <span class="ql-formats">
         <button class="ql-link"></button>
+        <button class="ql-video"></button>
+        <button class="ql-formula"></button>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-clean"></button>
       </span>
     </div>
   </quill-editor>
