@@ -1,6 +1,6 @@
 <p align="center">
   <a href="http://koala.mkzilla.com">
-    <img width="600" src="https://s2.ax1x.com/2019/12/30/llkCuT.jpg">
+    <img width="400" src="https://s2.ax1x.com/2019/12/30/llkCuT.jpg">
   </a>
 </p>
 
@@ -11,6 +11,13 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/mkzilla/koala)](https://goreportcard.com/report/github.com/mkzilla/koala)
 [![Expose APIServer Docker Image](https://github.com/mkzilla/koala/workflows/Expose%20APIServer%20Docker%20Image/badge.svg)](https://github.com/mkzilla/koala/actions)
 [![Expose UI Docker Image](https://github.com/mkzilla/koala/workflows/Expose%20UI%20Docker%20Image/badge.svg)](https://github.com/mkzilla/koala/actions)
+
+<p align="center">
+  <a href="http://koala.mkzilla.com">
+    <img width="500" src="https://s2.ax1x.com/2019/12/30/ll3uHs.md.jpg">
+  </a>
+</p>
+
 
 [English](./README.md) | 简体中文
 
