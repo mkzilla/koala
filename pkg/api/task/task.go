@@ -25,8 +25,9 @@ const (
 )
 
 type listParams struct {
-	Type     QueryType       `json:"type" form:"type"` // is_watch is_vote is_assign
+	Type     QueryType       `json:"type" form:"type"`
 	State    types.TaskState `json:"state" form:"state"`
+	ID       int64           `json:"id" form:"id"`
 	uid      int64
 	Username string `json:"username" form:"username"`
 }
@@ -48,7 +49,11 @@ func GetOKRByUser(c *gin.Context) {
 		params.uid = usr.(types.User).ID
 	}
 	var objs []types.Objective
-	if params.Type == is_doing {
+	if params.ID != 0 {
+		var obj types.Objective
+		obj, err = types.GetObjectiveByID(params.ID)
+		objs = append(objs, obj)
+	} else if params.Type == is_doing {
 		objs, err = types.GetDoingObjectivesByUser(params.uid, c.GetInt(config.PageSize), c.GetInt(config.PageOffset))
 	} else {
 		objs, err = types.GetObjectivesByUser(params.uid, c.GetInt(config.PageSize), c.GetInt(config.PageOffset))

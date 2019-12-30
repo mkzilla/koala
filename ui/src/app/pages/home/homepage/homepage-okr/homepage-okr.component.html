@@ -1,9 +1,10 @@
-<nz-page-header [nzGhost]="true">
+<nz-page-header>
   <nz-page-header-title>
     <button nz-button nzType="primary" (click)="createObjective()" *ngIf="user.username === username">创建个人OKR</button>
   </nz-page-header-title>
   <nz-page-header-subtitle></nz-page-header-subtitle>
   <nz-page-header-extra>
+    <button nz-button nzType="primary" [routerLink]="['.']" [queryParams]="{ idx: 5}" *ngIf="id !== null">查看全部 OKR</button>
     <button nz-button nzType="primary" (click)="changePage(-1)"><i nz-icon nzType="left"></i>前一页</button>
     <button nz-button nzType="primary" (click)="changePage(1)">后一页<i nz-icon nzType="right"></i></button>
   </nz-page-header-extra>
@@ -13,6 +14,7 @@
   nzMessage="什么是 OKR ?"
   nzDescription="O 表示目标（Objective），KR 表示关键结果（Key Results），目标就是指你想做什么事情，关键结果就是指如何确认你做到了那件事。详细细节可参考《OKR工作法》或者 mkzilla koala 文档。注意：一个人同时推荐最多开展3个目标，每个目标至少设置两个关键结果，目标的周期应该设置为3个月、半年或者一年，定期 review，便于自身提升。"
   nzShowIcon
+  *ngIf="id === null"
 >
 </nz-alert>
 <div nz-row [nzGutter]="8" style="min-height: 400px;">
