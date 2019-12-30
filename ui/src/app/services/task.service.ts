@@ -107,8 +107,11 @@ export class TaskService {
     });
   }
 
-  doListOKR(pageNumber= 0, username= '', type= ''): Promise<any> {
-    const params = new HttpParams().set('pageNumber', '' + pageNumber).set('username', username).set('type', type);
+  doListOKR(pageNumber= 0, username= '', type= '', id = ''): Promise<any> {
+    let params = new HttpParams().set('pageNumber', '' + pageNumber).set('username', username).set('type', type);
+    if (id !== null) {
+      params = params.set('id', id);
+    }
     return this.http.get('/api/v1/okrs', { headers: this.headers , params }).toPromise().catch( (error) => {
       this.handleError(error, '获取OKR列表失败');
     });

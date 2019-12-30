@@ -22,7 +22,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let okr of okrs">
-    <td><a routerLink="/homepage/{{user.username}}" [queryParams]="{idx: 5}">{{okr.title}} {{okr.end | relativeTime}}</a></td>
+    <td><a routerLink="/homepage/{{user.username}}" [queryParams]="{idx: 5, id: okr.id}">{{okr.title}} {{okr.end | relativeTime}}</a></td>
   </tr>
   </tbody>
 </nz-table>
