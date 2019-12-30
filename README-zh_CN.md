@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h3 align="center">Great open source task management system with free version and commercial support.</h3>
+<h3 align="center">了不起的开源的、提供免费版和商业支持的任务管理系统。</h3>
 
 [![Build Statue](https://travis-ci.org//mkzilla/koala.svg?branch=master)](https://travis-ci.org/mkzilla/koala)
 [![Build Release](https://img.shields.io/github/release/chengyumeng/koala.svg)](https://github.com/mkzilla/koala/releases)
@@ -12,26 +12,26 @@
 [![Expose APIServer Docker Image](https://github.com/mkzilla/koala/workflows/Expose%20APIServer%20Docker%20Image/badge.svg)](https://github.com/mkzilla/koala/actions)
 [![Expose UI Docker Image](https://github.com/mkzilla/koala/workflows/Expose%20UI%20Docker%20Image/badge.svg)](https://github.com/mkzilla/koala/actions)
 
-English | [简体中文](./README-zh_CN.md)
+[English](./README.md) | 简体中文
 
-## ✨ Features
+## ✨ 特性
 
-- 🌈 Supports individual and team use.
-- 📦 Provide management of objectives and tasks.
-- 🛡 Automatically generate weekly reports.
-- ⚙️ Provide password login and OAuth login.
-- 🌍 Provide commercial support.
+- 🌈 支持个人和团队两种使用模式
+- 📦 提供任务管理和 OKR 管理
+- 🛡 自动生成周报
+- ⚙️ 支持密码登录和 OAuth 登录
+- 🌍 提供商业支持
 - 🎨 ……
 
-## 🖥 Environment Support
+## 🖥 环境支持
 
-Koala provides an official image, you can use Docker to deploy across platforms. 
+koala 提供 docker 镜像，可以运行在任何支持 docker 的环境中
 
 ```bash
 $ docker pull chengtian:koala
 $ docker pull chengtian:koala-apiserver
 $ git clone https://github.com/mkzilla/koala.git
-$ # please edit koala/hack/docker/koala.json
+$ # 请编辑配置文件 koala/hack/docker/koala.json
 $ cd koala/hack/docker && sudo docker-compose up
 
 ```
