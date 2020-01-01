@@ -54,6 +54,14 @@ export class AuthService {
     return this.http.get('/api/v1/userinfo?username=' + username, {headers: this.headers}).toPromise();
   }
 
+  doCreateTechnique(): Promise<any> {
+    return this.http.post('/api/v1/technique', {}, {headers: this.headers}).toPromise();
+  }
+
+  doGetTechnique(): Promise<any> {
+    return this.http.get('/api/v1/technique', {headers: this.headers}).toPromise();
+  }
+
   doSearchUser(username: string): Promise<any> {
     return this.http.get(`/api/v1/users/assign?like=${username}`, {headers: this.headers}).toPromise().catch((error) => {
       this.handleError(error, '获取查询用户列表失败');

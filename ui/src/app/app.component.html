@@ -25,6 +25,9 @@
             <a routerLink="/dashboard">看板</a>
           </li>
           <li nz-menu-item>
+            <a routerLink="/technique">番茄</a>
+          </li>
+          <li nz-menu-item>
             <a routerLink="/weekly">周报</a>
           </li>
           <li nz-menu-item>
@@ -58,6 +61,12 @@
         </span>
         <span class="header-trigger" (click)="createTask.showModal()">
           <button nz-button nzType="primary"><i nz-icon nzType="form" nzTheme="outline"></i>创建任务</button>
+        </span>
+        <span class="header-trigger" *ngIf="technique.id === 0" (click)="createTechnique()">
+          <button nz-button nzType="primary"><i nz-icon nzType="branches" nzTheme="outline"></i>创建番茄</button>
+        </span>
+        <span class="header-trigger" *ngIf="technique.id !== 0"(click)="checkTechnique()">
+          <button nz-button nzType="primary"><i nz-icon nzType="clock-circle" nzTheme="outline" nzSpin="true"></i>{{counter}}</button>
         </span>
       </div>
     </nz-header>

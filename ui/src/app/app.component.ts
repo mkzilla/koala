@@ -3,7 +3,8 @@ import {CreateTaskComponent} from './pages/home/create-task/create-task.componen
 import {User} from './models/user';
 import {AuthService} from './services/auth.service';
 import {CacheService} from './services/cache.service';
-import {Route} from '@angular/router';
+import Technique from './models/technique';
+
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,10 @@ import {Route} from '@angular/router';
 })
 export class AppComponent {
   @ViewChild(CreateTaskComponent, {static: false }) createTask: CreateTaskComponent;
-
   isCollapsed = false;
   user: User = new User();
+  technique = new Technique();
+  counter = '加载番茄时间';
 
   constructor(private authService: AuthService, private cache: CacheService) {
     this.authService.doGetUserInfo('').then((response: any) => {
@@ -23,5 +25,45 @@ export class AppComponent {
         this.cache.changeUser(this.user);
       }
     });
+    this.authService.doGetTechnique().then((data: any) => {
+      if (data !== undefined) {
+        this.technique = data;
+      }
+    });
+    setInterval(() => {
+      this.counter = this.transform(this.technique.createTime);
+    }, 1000);
+  }
+
+  transform(value: Date): string {
+    const un = (new Date(value)).getTime();
+    const minute = 1000 * 60;
+    const second = 1000;
+    const now = new Date().getTime();
+    const diffValue = now - un;
+    if (diffValue < 0) {
+      return;
+    }
+    const minC = Math.floor(diffValue / minute);
+    if (minC === 25) {
+      return '已完成';
+    }
+    const secC = Math.floor((diffValue - minC * minute) / second);
+    return ('00' + minC).slice(-2) + ':' + ('00' + secC).slice(-2);
+  }
+
+  checkTechnique() {
+    //
+  }
+
+  createTechnique() {
+   if (this.technique.id !== 0) {
+     return;
+   }
+   this.authService.doCreateTechnique().then((data) => {
+     if (data !== undefined) {
+       this.technique = data;
+     }
+   });
   }
 }
