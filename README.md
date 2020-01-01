@@ -24,6 +24,7 @@ English | [简体中文](./README-zh_CN.md)
 
 - 🌈 Supports individual and team use.
 - 📦 Provide management of objectives and tasks.
+- 🍅 Provide Pomodoro Technique
 - 🛡 Automatically generate weekly reports.
 - ⚙️ Provide password login and OAuth login.
 - 🌍 Provide commercial support.
@@ -41,4 +42,6 @@ $ # please edit koala/hack/docker/koala.json
 $ cd koala/hack/docker && sudo docker-compose up
 
 ```
+
+![flash-slothmore](flash-slothmore.jpg)
 
