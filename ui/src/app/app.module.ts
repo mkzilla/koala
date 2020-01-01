@@ -83,6 +83,7 @@ registerLocaleData(zh);
     TechniqueComponent,
     GiveUpTechniqueComponent,
     RelativeTimePipe,
+    TechniqueComponent,
   ],
   imports: [
     BrowserModule,

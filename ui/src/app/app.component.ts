@@ -5,6 +5,7 @@ import {AuthService} from './services/auth.service';
 import {CacheService} from './services/cache.service';
 import Technique from './models/technique';
 import {GiveUpTechniqueComponent} from './pages/home/give-up-technique/give-up-technique.component';
+import {TechniqueComponent} from './pages/home/technique/technique.component';
 
 
 @Component({
@@ -15,6 +16,7 @@ import {GiveUpTechniqueComponent} from './pages/home/give-up-technique/give-up-t
 export class AppComponent implements OnInit {
   @ViewChild(CreateTaskComponent, {static: false }) createTask: CreateTaskComponent;
   @ViewChild(GiveUpTechniqueComponent, {static: false }) giveUpTechniqueComponent: GiveUpTechniqueComponent;
+  @ViewChild(TechniqueComponent, {static: false }) techniqueComponent: TechniqueComponent;
   isCollapsed = false;
   user: User = new User();
   technique = new Technique();
@@ -51,7 +53,7 @@ export class AppComponent implements OnInit {
       return;
     }
     const minC = Math.floor(diffValue / minute);
-    if (minC === 25) {
+    if (minC >= 25) {
       return '已完成';
     }
     const secC = Math.floor((diffValue - minC * minute) / second);
@@ -61,6 +63,8 @@ export class AppComponent implements OnInit {
   checkTechnique() {
     if (this.counter !== '已完成') {
       this.giveUpTechniqueComponent.showModal();
+    } else {
+      this.techniqueComponent.showModal();
     }
   }
 
