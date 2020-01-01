@@ -1,5 +1,8 @@
-<nz-modal [(nzVisible)]="isVisible" nzTitle="警告" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-  <p>
-    您是否决定放弃当前的番茄时间？
-  </p>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="确认终止当前番茄时间" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <nz-alert
+    nzType="warning"
+    nzMessage="警告"
+    nzDescription="根据番茄工作法，一个番茄时间是 25 分钟，您是否确认决定终止一个正在进行的番茄时间？"
+    nzShowIcon
+  ></nz-alert>
 </nz-modal>
