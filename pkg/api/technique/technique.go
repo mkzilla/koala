@@ -14,13 +14,13 @@ func StartTechnique(c *gin.Context) {
 	usr, _ := c.Get(config.User)
 	var nw = time.Now()
 
-	tss, err := types.GetCountTechnique(usr.(types.User).ID, nw.Add(time.Minute*-25))
+	tss, err := types.GetDoingTechnique(usr.(types.User).ID)
 	if err != nil {
 		types.HandleError(c, types.FailedToGetDataFromDB, err)
 		return
 	}
-	if len(tss) > 0 {
-		c.JSON(http.StatusBadRequest, len(tss))
+	if tss != nil {
+		c.JSON(http.StatusBadRequest, tss)
 		return
 	}
 	var t = types.Technique{
@@ -38,17 +38,25 @@ func StartTechnique(c *gin.Context) {
 
 func GetRecentTechnique(c *gin.Context) {
 	usr, _ := c.Get(config.User)
-	var nw = time.Now()
-
-	tss, err := types.GetCountTechnique(usr.(types.User).ID, nw.Add(time.Minute*-25))
+	ts, err := types.GetDoingTechnique(usr.(types.User).ID)
 	if err != nil {
 		types.HandleError(c, types.FailedToGetDataFromDB, err)
 		return
 	}
-	if len(tss) > 0 {
-		tss[0].CreateTime = time.Unix(tss[0].CreateTimeStamp, 0).Local()
-		c.JSON(http.StatusOK, tss[0])
+	if ts != nil {
+		ts.CreateTime = time.Unix(ts.CreateTimeStamp, 0).Local()
+		c.JSON(http.StatusOK, ts)
 		return
 	}
 	c.JSON(http.StatusNotFound, nil)
+}
+
+func SetDone(c *gin.Context) {
+	usr, _ := c.Get(config.User)
+	err := types.SetDoneTechniqueByID(usr.(types.User).ID)
+	if err != nil {
+		types.HandleError(c, types.FailedToInsertDataToDatabase, err)
+		return
+	}
+	c.JSON(http.StatusOK, nil)
 }

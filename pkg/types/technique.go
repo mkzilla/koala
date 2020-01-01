@@ -19,11 +19,16 @@ func InsertTechnique(t Technique) (Technique, error) {
 	return t, err
 }
 
-func GetCountTechnique(uid int64, t time.Time) (ts []Technique, err error) {
-	err = config.DBEngine.Table("technique").Where("userID = ? and createTime > ?", uid, t.Unix()).Find(&ts)
-	return ts, err
+func GetDoingTechnique(uid int64) (*Technique, error) {
+	var t1 = Technique{}
+	ext, err := config.DBEngine.Table("technique").Where("userID = ? and done = 0", uid).Get(&t1)
+	if !ext {
+		return nil, err
+	}
+	return &t1, err
 }
 
-func SetDoneByID(id interface{}) error {
-	return nil
+func SetDoneTechniqueByID(uid int64) error {
+	_, err := config.DBEngine.Exec("update technique set done = true where userID = ?", uid)
+	return err
 }

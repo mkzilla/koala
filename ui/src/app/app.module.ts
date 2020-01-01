@@ -43,6 +43,8 @@ import {ViewGroupComponent} from './pages/home/groups-manage/view-group/view-gro
 import {CreateEditOkrComponent} from './pages/home/create-edit-okr/create-edit-okr.component';
 import {HomepageOkrComponent} from './pages/home/homepage/homepage-okr/homepage-okr.component';
 import {RegisterComponent} from './pages/register/register.component';
+import {TechniqueComponent} from './pages/home/technique/technique.component';
+import {GiveUpTechniqueComponent} from './pages/home/give-up-technique/give-up-technique.component';
 
 registerLocaleData(zh);
 
@@ -78,6 +80,8 @@ registerLocaleData(zh);
     ViewTaskComponent,
     StatisticsComponent,
     ViewGroupComponent,
+    TechniqueComponent,
+    GiveUpTechniqueComponent,
     RelativeTimePipe,
   ],
   imports: [

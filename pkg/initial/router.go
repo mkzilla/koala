@@ -46,6 +46,7 @@ func InitRouter() {
 
 	apv1.POST("/technique", technique.StartTechnique)
 	apv1.GET("/technique", technique.GetRecentTechnique)
+	apv1.POST("/technique/done", technique.SetDone)
 
 	apv1.GET("/weekly/self", weekly.ListSelf)
 	apv1.GET("/weekly/groups/:group_id", weekly.ListGroup)

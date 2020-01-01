@@ -1,9 +1,10 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CreateTaskComponent} from './pages/home/create-task/create-task.component';
 import {User} from './models/user';
 import {AuthService} from './services/auth.service';
 import {CacheService} from './services/cache.service';
 import Technique from './models/technique';
+import {GiveUpTechniqueComponent} from './pages/home/give-up-technique/give-up-technique.component';
 
 
 @Component({
@@ -11,8 +12,9 @@ import Technique from './models/technique';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   @ViewChild(CreateTaskComponent, {static: false }) createTask: CreateTaskComponent;
+  @ViewChild(GiveUpTechniqueComponent, {static: false }) giveUpTechniqueComponent: GiveUpTechniqueComponent;
   isCollapsed = false;
   user: User = new User();
   technique = new Technique();
@@ -25,14 +27,18 @@ export class AppComponent {
         this.cache.changeUser(this.user);
       }
     });
+    setInterval(() => {
+      this.counter = this.transform(this.technique.createTime);
+    }, 1000);
+  }
+
+  ngOnInit(): void {
+    this.technique = new Technique();
     this.authService.doGetTechnique().then((data: any) => {
       if (data !== undefined) {
         this.technique = data;
       }
     });
-    setInterval(() => {
-      this.counter = this.transform(this.technique.createTime);
-    }, 1000);
   }
 
   transform(value: Date): string {
@@ -53,7 +59,9 @@ export class AppComponent {
   }
 
   checkTechnique() {
-    //
+    if (this.counter !== '已完成') {
+      this.giveUpTechniqueComponent.showModal();
+    }
   }
 
   createTechnique() {
