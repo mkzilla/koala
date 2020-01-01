@@ -59,6 +59,12 @@
         <span class="header-trigger" (click)="createTask.showModal()">
           <button nz-button nzType="primary"><i nz-icon nzType="form" nzTheme="outline"></i>创建任务</button>
         </span>
+        <span class="header-trigger" *ngIf="technique.id === 0" (click)="createTechnique()">
+          <button nz-button nzType="primary"><i nz-icon nzType="branches" nzTheme="outline"></i>创建番茄</button>
+        </span>
+        <span class="header-trigger" *ngIf="technique.id !== 0"(click)="checkTechnique()">
+          <button nz-button nzType="primary"><i nz-icon nzType="clock-circle" nzTheme="outline" nzSpin="true"></i>{{counter}}</button>
+        </span>
       </div>
     </nz-header>
     <nz-content>
@@ -66,3 +72,5 @@
     </nz-content>
   </nz-layout>
 </nz-layout>
+<app-give-up-technique (refresh)="ngOnInit()"></app-give-up-technique>
+<app-technique (refresh)="ngOnInit()"></app-technique>

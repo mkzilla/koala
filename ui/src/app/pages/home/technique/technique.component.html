@@ -1,0 +1,8 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="(*^▽^*) 恭喜" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzWidth="70%">
+  <nz-alert
+    nzType="success"
+    nzMessage="🍅 提示"
+    nzDescription="您已经完成番茄时间，我们建议您把此间完成的工作同步到任务中，如果此前没有创建相关任务，建议点击创建任务补充一下！"
+    nzShowIcon
+  ></nz-alert>
+</nz-modal>

@@ -25,6 +25,7 @@
 
 - 🌈 支持个人和团队两种使用模式
 - 📦 提供任务管理和 OKR 管理
+- 🍅 支持番茄工作法
 - 🛡 自动生成周报
 - ⚙️ 支持密码登录和 OAuth 登录
 - 🌍 提供商业支持
@@ -42,4 +43,6 @@ $ # 请编辑配置文件 koala/hack/docker/koala.json
 $ cd koala/hack/docker && sudo docker-compose up
 
 ```
+
+![flash-slothmore](flash-slothmore.jpg)
 
