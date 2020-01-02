@@ -5,13 +5,13 @@ export default function transformTime(value: Date): string {
   const now = new Date().getTime();
   const diffValue = now - un;
   if (diffValue < 0) {
-    return;
+    return '25:00';
   }
   const minC = Math.floor(diffValue / minute);
   if (minC >= 25) {
-    this.rain.nativeElement.pause();
     return '已完成';
   }
-  const secC = Math.floor((diffValue - minC * minute) / second);
-  return ('00' + minC).slice(-2) + ':' + ('00' + secC).slice(-2);
+  const secC = 59 - Math.floor((diffValue - minC * minute) / second);
+
+  return ('00' + (24 - minC)).slice(-2) + ':' + ('00' + secC).slice(-2);
 }

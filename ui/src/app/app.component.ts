@@ -34,6 +34,9 @@ export class AppComponent implements OnInit {
     });
     setInterval(() => {
       this.counter = transformTime(this.technique.createTime);
+      if (this.counter === '已完成') {
+        this.rain.nativeElement.pause();
+      }
     }, 1000);
   }
 
