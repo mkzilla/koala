@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CreateTaskComponent} from './pages/home/create-task/create-task.component';
 import {User} from './models/user';
 import {AuthService} from './services/auth.service';
@@ -17,6 +17,8 @@ export class AppComponent implements OnInit {
   @ViewChild(CreateTaskComponent, {static: false }) createTask: CreateTaskComponent;
   @ViewChild(GiveUpTechniqueComponent, {static: false }) giveUpTechniqueComponent: GiveUpTechniqueComponent;
   @ViewChild(TechniqueComponent, {static: false }) techniqueComponent: TechniqueComponent;
+  @ViewChild('rain', {static: false }) rain: ElementRef;
+
   isCollapsed = false;
   user: User = new User();
   technique = new Technique();
@@ -39,6 +41,7 @@ export class AppComponent implements OnInit {
     this.authService.doGetTechnique().then((data: any) => {
       if (data !== undefined) {
         this.technique = data;
+        this.rain.nativeElement.play();
       }
     });
   }
@@ -54,6 +57,7 @@ export class AppComponent implements OnInit {
     }
     const minC = Math.floor(diffValue / minute);
     if (minC >= 25) {
+      this.rain.nativeElement.pause();
       return '已完成';
     }
     const secC = Math.floor((diffValue - minC * minute) / second);
@@ -75,6 +79,7 @@ export class AppComponent implements OnInit {
    this.authService.doCreateTechnique().then((data) => {
      if (data !== undefined) {
        this.technique = data;
+       this.rain.nativeElement.play();
      }
    });
   }
