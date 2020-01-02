@@ -74,13 +74,6 @@
 </nz-layout>
 <app-give-up-technique (refresh)="ngOnInit()"></app-give-up-technique>
 <app-technique (refresh)="ngOnInit()"></app-technique>
-<video
-  #rain
-  preload="metadata"
-  playsinline
-  muted
-  loop
-  style="display: none"
->
+<video #rain preload="metadata" playsinline muted loop style="display: none">
   <source src="assets/media/rain.mp4" type="video/mp4" />
 </video>

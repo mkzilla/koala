@@ -6,6 +6,7 @@ import {CacheService} from './services/cache.service';
 import Technique from './models/technique';
 import {GiveUpTechniqueComponent} from './pages/home/give-up-technique/give-up-technique.component';
 import {TechniqueComponent} from './pages/home/technique/technique.component';
+import transformTime from './utils/tomatoMethod';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class AppComponent implements OnInit {
       }
     });
     setInterval(() => {
-      this.counter = this.transform(this.technique.createTime);
+      this.counter = transformTime(this.technique.createTime);
     }, 1000);
   }
 
@@ -44,24 +45,6 @@ export class AppComponent implements OnInit {
         this.rain.nativeElement.play();
       }
     });
-  }
-
-  transform(value: Date): string {
-    const un = (new Date(value)).getTime();
-    const minute = 1000 * 60;
-    const second = 1000;
-    const now = new Date().getTime();
-    const diffValue = now - un;
-    if (diffValue < 0) {
-      return;
-    }
-    const minC = Math.floor(diffValue / minute);
-    if (minC >= 25) {
-      this.rain.nativeElement.pause();
-      return '已完成';
-    }
-    const secC = Math.floor((diffValue - minC * minute) / second);
-    return ('00' + minC).slice(-2) + ':' + ('00' + secC).slice(-2);
   }
 
   checkTechnique() {
