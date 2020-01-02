@@ -12,12 +12,12 @@
   <div nz-row>
     <div nz-col [nzSpan]="7" style="margin-left: 16px;background: #ECECEC;">
       <nz-card style="width: 100%;margin-top: 1px;text-align:center;">
-        即将开始
+        <span>即将开始</span>
       </nz-card>
     </div>
     <div nz-col [nzSpan]="8" style="margin-left: 16px;background: #ECECEC;">
       <nz-card style="width: 100%;margin-top: 1px;text-align:center;">
-        正在进行中
+        <span><i nz-icon nzType="sync" nzTheme="outline" nzSpin="true"></i> 正在进行中</span>
       </nz-card>
     </div>
     <div nz-col [nzSpan]="7" style="margin-left: 16px;background: #ECECEC;">
@@ -34,7 +34,7 @@
          [cdkDropListData]="kanban.will"
          (cdkDropListDropped)="drop($event)">
       <nz-card style="width: 100%;margin-top: 1px" *ngFor="let task of kanban.will" cdkDrag>
-        <a routerLink="/task/{{task.id}}">{{task.title}}</a>
+        <i nz-icon nzType="link" nzTheme="outline"></i><a routerLink="/task/{{task.id}}"> {{task.title}}</a>
       </nz-card>
     </div>
     <div nz-col [nzSpan]="8" style="margin-left: 16px;min-height: 600px;background: #ECECEC;"
@@ -42,7 +42,7 @@
          [cdkDropListData]="kanban.doing"
          (cdkDropListDropped)="drop($event)">
       <nz-card style="width: 100%;margin-top: 1px;" *ngFor="let task of kanban.doing" cdkDrag>
-        <a routerLink="/task/{{task.id}}">{{task.title}}</a>
+        <i nz-icon nzType="pull-request"></i> <a routerLink="/task/{{task.id}}"> {{task.title}}</a>
       </nz-card>
     </div>
     <div nz-col [nzSpan]="7" style="margin-left: 16px;min-height: 600px;background: #ECECEC;"
@@ -50,7 +50,7 @@
          [cdkDropListData]="kanban.done"
          (cdkDropListDropped)="drop($event)">
       <nz-card style="width: 100%;margin-top: 1px;" *ngFor="let task of kanban.done" cdkDrag>
-        <a routerLink="/task/{{task.id}}">{{task.title}}</a>
+        <i nz-icon nzType="file-done" nzTheme="outline"></i><a routerLink="/task/{{task.id}}"> {{task.title}}</a>
       </nz-card>
     </div>
   </div>
