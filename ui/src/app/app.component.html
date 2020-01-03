@@ -1,6 +1,6 @@
-<app-create-task></app-create-task>
-<nz-layout class="app-layout" *ngIf="user.id !== 0">
-  <nz-sider class="menu-sidebar"
+<app-create-task *ngIf="user.id !== 0"></app-create-task>
+<nz-layout class="app-layout" >
+  <nz-sider *ngIf="user.id !== 0" class="menu-sidebar"
             nzCollapsible
             nzWidth="180px"
             nzBreakpoint="md"
@@ -44,7 +44,7 @@
     </ul>
   </nz-sider>
   <nz-layout>
-    <nz-header>
+    <nz-header *ngIf="user.id !== 0">
       <div class="app-header">
         <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
             <i class="trigger"
@@ -71,15 +71,8 @@
     </nz-content>
   </nz-layout>
 </nz-layout>
-<app-give-up-technique (refresh)="ngOnInit()"></app-give-up-technique>
-<app-technique (refresh)="ngOnInit()"></app-technique>
-<video #rain preload="metadata" playsinline muted loop style="display: none">
+<app-give-up-technique *ngIf="user.id !== 0" (refresh)="ngOnInit()"></app-give-up-technique>
+<app-technique *ngIf="user.id !== 0" (refresh)="ngOnInit()"></app-technique>
+<video *ngIf="user.id !== 0" #rain preload="metadata" playsinline muted loop style="display: none">
   <source src="assets/media/rain.mp4" type="video/mp4" />
 </video>
-
-
-<nz-layout class="app-layout" *ngIf="user.id === 0">
-  <nz-content>
-    <router-outlet></router-outlet>
-  </nz-content>
-</nz-layout>
