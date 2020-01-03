@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.technique = new Technique();
+    this.rain.nativeElement.pause();
     this.authService.doGetTechnique().then((data: any) => {
       if (data !== undefined) {
         this.technique = data;
