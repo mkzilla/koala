@@ -71,8 +71,8 @@
     </nz-content>
   </nz-layout>
 </nz-layout>
-<app-give-up-technique *ngIf="user.id !== 0" (refresh)="ngOnInit()"></app-give-up-technique>
-<app-technique *ngIf="user.id !== 0" (refresh)="ngOnInit()"></app-technique>
+<app-give-up-technique *ngIf="user.id !== 0" (refresh)="pullTechnique()"></app-give-up-technique>
+<app-technique *ngIf="user.id !== 0" (refresh)="pullTechnique()"></app-technique>
 <video *ngIf="user.id !== 0" #rain preload="metadata" playsinline muted loop style="display: none">
   <source src="assets/media/rain.mp4" type="video/mp4" />
 </video>
