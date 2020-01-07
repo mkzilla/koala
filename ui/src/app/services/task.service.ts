@@ -5,6 +5,8 @@ import { Task } from '../models/task';
 import { Router } from '@angular/router';
 import { Comment } from '../models/comment';
 import { Params } from '../models/data/params';
+import Plan from '../models/plan';
+import Status from '../models/status';
 
 @Injectable({
   providedIn: 'root'
@@ -114,6 +116,32 @@ export class TaskService {
     }
     return this.http.get('/api/v1/okrs', { headers: this.headers , params }).toPromise().catch( (error) => {
       this.handleError(error, '获取OKR列表失败');
+    });
+  }
+
+  doGetPlan(username= ''): Promise<any> {
+    const params = new HttpParams().set('username', username);
+    return this.http.get('/api/v1/plan', { headers: this.headers , params }).toPromise().catch( (error) => {
+      this.handleError(error, '获取 Plan 失败');
+    });
+  }
+
+  doCreatePlan(data: Plan): Promise<any> {
+    return this.http.post('/api/v1/plan', data, { headers: this.headers }).toPromise().catch( (error) => {
+      this.handleError(error, '创建计划失败');
+    });
+  }
+
+  doGetStatus(username= ''): Promise<any> {
+    const params = new HttpParams().set('username', username);
+    return this.http.get('/api/v1/status', { headers: this.headers , params }).toPromise().catch( (error) => {
+      this.handleError(error, '获取状态指标失败');
+    });
+  }
+
+  doCreateStatus(data: Status): Promise<any> {
+    return this.http.post('/api/v1/status', data, { headers: this.headers }).toPromise().catch( (error) => {
+      this.handleError(error, '创建状态指标失败');
     });
   }
 

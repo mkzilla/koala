@@ -8,29 +8,68 @@
 </nz-descriptions>
 
 <div nz-row [nzGutter]="8" style="min-height: 400px;">
-  <div nz-col [nzSpan]="12" style="margin-top:10px;" *ngFor="let task of tasks">
-    <nz-card [nzTitle]="nzTitle" style="height: 200px;overflow-y:scroll;">
-      <ng-template #nzTitle><a routerLink="/task/{{task.id}}"> {{ task.title }}</a> <i style="float: right;">{{task.create_time | relativeTime}}</i></ng-template>
-
-      <nz-tag [nzColor]="'#3D59AB'" *ngIf="task.importance == 1">不重要</nz-tag>
-      <nz-tag [nzColor]="'#33A1C9'" *ngIf="task.importance == 2">一般重要</nz-tag>
-      <nz-tag [nzColor]="'#03A89E'" *ngIf="task.importance == 3">重要</nz-tag>
-      <nz-tag [nzColor]="'#00C78C'" *ngIf="task.importance == 4">很重要</nz-tag>
-      <nz-tag [nzColor]="'#1E90FF'" *ngIf="task.importance == 5">极其重要</nz-tag>
-
-      <nz-tag [nzColor]="'#DDA0DD'" *ngIf="task.priority == 1">不紧急</nz-tag>
-      <nz-tag [nzColor]="'#DA70D6'" *ngIf="task.priority == 2">一般紧急</nz-tag>
-      <nz-tag [nzColor]="'#A066D3'" *ngIf="task.priority == 3">紧急</nz-tag>
-      <nz-tag [nzColor]="'#8A2BE2'" *ngIf="task.priority == 4">很紧急</nz-tag>
-      <nz-tag [nzColor]="'#9933FA'" *ngIf="task.priority == 5">极其紧急</nz-tag>
-
-      <nz-tag [nzColor]="'#FFB6C1'" *ngIf="task.state == 0">没有进展</nz-tag>
-      <nz-tag [nzColor]="'#FFD700'" *ngIf="task.state == 1">即将开始</nz-tag>
-      <nz-tag [nzColor]="'#32CD32'" *ngIf="task.state == 2">进行中</nz-tag>
-      <nz-tag [nzColor]="'#228B22'" *ngIf="task.state == 3">完成</nz-tag>
-      <nz-tag [nzColor]="'#E3170D'" *ngIf="task.state == 4">取消</nz-tag>
-      <nz-tag [nzColor]="'#FFD71f'" *ngIf="task.state == 5">暂停</nz-tag>
-      <quill-view [content]="task.desc" format="text" theme="snow"></quill-view>
+  <div nz-col [nzSpan]="12" style="margin-top:10px;">
+    <nz-card nz-col [nzTitle]="nzTitle1" style="height: 250px;overflow-y:scroll;">
+      <ng-template #nzTitle1><a routerLink="/task/">本周关注的任务</a></ng-template>
+      <article nz-typography>
+        <ul *ngFor="let task of tasks">
+          <li>
+            <a routerLink="/task/{{task.id}}" style="padding-right: 10px;"> {{ task.title }}</a>
+            <nz-tag [nzColor]="'#3D59AB'" *ngIf="task.importance == 1">不重要</nz-tag>
+            <nz-tag [nzColor]="'#33A1C9'" *ngIf="task.importance == 2">一般重要</nz-tag>
+            <nz-tag [nzColor]="'#03A89E'" *ngIf="task.importance == 3">重要</nz-tag>
+            <nz-tag [nzColor]="'#00C78C'" *ngIf="task.importance == 4">很重要</nz-tag>
+            <nz-tag [nzColor]="'#1E90FF'" *ngIf="task.importance == 5">极其重要</nz-tag>
+            <nz-tag [nzColor]="'#DDA0DD'" *ngIf="task.priority == 1">不紧急</nz-tag>
+            <nz-tag [nzColor]="'#DA70D6'" *ngIf="task.priority == 2">一般紧急</nz-tag>
+            <nz-tag [nzColor]="'#A066D3'" *ngIf="task.priority == 3">紧急</nz-tag>
+            <nz-tag [nzColor]="'#8A2BE2'" *ngIf="task.priority == 4">很紧急</nz-tag>
+            <nz-tag [nzColor]="'#9933FA'" *ngIf="task.priority == 5">极其紧急</nz-tag>
+          </li>
+        </ul>
+      </article>
+    </nz-card>
+  </div>
+  <div nz-col [nzSpan]="12" style="margin-top:10px;">
+    <nz-card nz-col [nzTitle]="nzTitle2" style="height: 250px;overflow-y:scroll;">
+      <ng-template #nzTitle2><a routerLink="/task/">OKR 当前状态</a></ng-template>
+      <article nz-typography>
+        <ul *ngFor="let okr of okrs">
+          <li>
+            <a nz-popover [nzPopoverContent]="contentTemplate" routerLink="/homepage/{{user.username}}" [queryParams]="{idx: 5, id: okr.id}">
+              {{okr.title}}
+            </a>
+          </li>
+          <ng-template #contentTemplate>
+            <strong style="margin-right:30px;">关键结果</strong>
+            <article nz-typography>
+              <quill-view [content]="okr.keyResults" format="text" theme="snow"></quill-view>
+            </article>
+            <div>
+              <nz-tag [nzColor]="'#87d068'">{{okr.start}}</nz-tag>
+              <nz-tag [nzColor]="'#f50'">{{okr.end}}</nz-tag>
+            </div>
+          </ng-template>
+        </ul>
+      </article>
+    </nz-card>
+  </div>
+  <div nz-col [nzSpan]="12" style="margin-top:10px;">
+    <nz-card nz-col [nzTitle]="nzTitle3" style="height: 300px;overflow-y:scroll;">
+      <ng-template #nzTitle3><a routerLink="/task/">未来四周的计划</a><a style="float: right;" (click)="createPlan()">编辑</a>
+      </ng-template>
+      <article nz-typography>
+        <quill-view [content]="plan.desc" format="text" theme="snow"></quill-view>
+      </article>
+    </nz-card>
+  </div>
+  <div nz-col [nzSpan]="12" style="margin-top:10px;">
+    <nz-card nz-col [nzTitle]="nzTitle4" style="height: 300px;overflow-y:scroll;">
+      <ng-template #nzTitle4><a routerLink="/task/">状态指标</a><a style="float: right;" (click)="createStatus()">编辑</a></ng-template>
+      <article nz-typography>
+        <quill-view [content]="status.desc" format="text" theme="snow"></quill-view>
+      </article>
     </nz-card>
   </div>
 </div>
+<app-cedit-plan-status (refresh)="ngOnInit()"></app-cedit-plan-status>

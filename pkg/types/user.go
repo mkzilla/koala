@@ -15,7 +15,7 @@ type Common struct {
 type User struct {
 	ID         int64      `json:"id" xorm:"'id' pk autoincr"`
 	CreateTime *time.Time `json:"createTime" xorm:"'createTime' created"`
-	UpdateTime *time.Time `json:"createTime" xorm:"'updateTime' created"`
+	UpdateTime *time.Time `json:"createTime" xorm:"'updateTime' updated"`
 
 	Username     string `json:"username" xorm:"'username' unique"`
 	RealName     string `json:"realname" xorm:"'realname'"`
