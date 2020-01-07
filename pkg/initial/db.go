@@ -32,6 +32,8 @@ func InitDB() {
 		config.DBEngine.Sync2(new(types.Notification))
 		config.DBEngine.Sync2(new(types.Objective))
 		config.DBEngine.Sync2(new(types.Technique))
+		config.DBEngine.Sync2(new(types.Plan))
+		config.DBEngine.Sync2(new(types.Status))
 
 		config.DBEngine.InsertOne(types.User{
 			ID:           1,

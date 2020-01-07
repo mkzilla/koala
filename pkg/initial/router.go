@@ -6,7 +6,9 @@ import (
 	"github.com/mkzilla/koala/pkg/api/group"
 	"github.com/mkzilla/koala/pkg/api/middleware"
 	"github.com/mkzilla/koala/pkg/api/notification"
+	"github.com/mkzilla/koala/pkg/api/plan"
 	"github.com/mkzilla/koala/pkg/api/statistics"
+	"github.com/mkzilla/koala/pkg/api/status"
 	"github.com/mkzilla/koala/pkg/api/task"
 	"github.com/mkzilla/koala/pkg/api/technique"
 	"github.com/mkzilla/koala/pkg/api/user"
@@ -43,6 +45,10 @@ func InitRouter() {
 	apv1.GET("/okrs", task.GetOKRByUser)
 	apv1.POST("/okr", task.CreateUserOKR)
 	apv1.PUT("/okr", task.EditUserOKR)
+	apv1.GET("/plan", plan.GetRecent)
+	apv1.POST("/plan", plan.CreateNewPlan)
+	apv1.GET("/status", status.GetRecent)
+	apv1.POST("/status", status.CreateNewStatus)
 
 	apv1.POST("/technique", technique.StartTechnique)
 	apv1.GET("/technique", technique.GetRecentTechnique)
