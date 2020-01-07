@@ -8,6 +8,7 @@ import {CreateEditOkrComponent} from '../../create-edit-okr/create-edit-okr.comp
 import {CeditPlanStatusComponent} from './cedit-plan-status/cedit-plan-status.component';
 import Plan from '../../../../models/plan';
 import Status from '../../../../models/status';
+import {CacheService} from '../../../../services/cache.service';
 
 @Component({
   selector: 'app-homepage-overview',
@@ -23,13 +24,11 @@ export class HomepageOverviewComponent implements OnInit {
   plan = new Plan();
   status = new Status();
 
-  constructor(private taskService: TaskService, private authService: AuthService) { }
+  constructor(private taskService: TaskService, private authService: AuthService, private cache: CacheService) { }
 
   ngOnInit() {
-    this.authService.doGetUserInfo(this.username).then((response: any) => {
-      if (response !== undefined) {
-        this.user = response;
-      }
+    this.cache.currentUser.subscribe(u => {
+      this.user = u;
     });
     this.taskService.doListOKR(0, '', 'is_doing').then((response) => {
       this.okrs = response;

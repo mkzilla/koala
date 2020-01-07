@@ -53,7 +53,7 @@
             ></i>
         </span>
         <span style="float: right;padding-right: 40px;font-size: large;">
-          <a routerLink="/homepage/{{user.username}}" [queryParams]="{idx: 0}"><i nz-icon nzType="user"></i>  {{user.nickname}}</a>
+          <a (click)="logoutComponent.showModal()"><i nz-icon nzType="user"></i>  {{user.nickname}}</a>
         </span>
         <span class="header-trigger" (click)="createTask.showModal()">
           <button nz-button nzType="primary"><i nz-icon nzType="form" nzTheme="outline"></i>创建任务</button>
@@ -76,3 +76,4 @@
 <video *ngIf="user.id !== 0" #rain preload="metadata" playsinline muted loop style="display: none">
   <source src="assets/media/rain.mp4" type="video/mp4" />
 </video>
+<app-logout></app-logout>

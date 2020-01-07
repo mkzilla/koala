@@ -1,0 +1,16 @@
+<nz-modal [(nzVisible)]="isVisible" [nzFooter]="modalFooter" nzTitle="是否退出当前用户？" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"nzWidth="60%">
+  <div>
+    <nz-descriptions nzBordered>
+      <nz-descriptions-item nzTitle="username">{{user.username}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="nickname">{{user.nickname}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="id">{{user.id}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="身份"><span *ngIf="user.is_admin">管理员</span><span *ngIf="!user.is_admin">普通用户</span></nz-descriptions-item>
+      <nz-descriptions-item nzTitle="邮箱"><a href="mailto:{{user.email}}">{{user.email}}</a></nz-descriptions-item>
+      <nz-descriptions-item nzTitle="手机号">{{user.phone}}</nz-descriptions-item>
+    </nz-descriptions>
+  </div>
+  <ng-template #modalFooter>
+    <button nz-button nzType="default" (click)="handleCancel()">取消</button>
+    <button nz-button nzType="danger" (click)="handleOk()">退出</button>
+  </ng-template>
+</nz-modal>
