@@ -37,8 +37,8 @@
               <quill-view [content]="okr.keyResults" format="text" theme="snow"></quill-view>
             </article>
             <div>
-              <nz-tag [nzColor]="'#87d068'">{{okr.start}}</nz-tag>
-              <nz-tag [nzColor]="'#f50'">{{okr.end}}</nz-tag>
+              <nz-tag [nzColor]="'#87d068'">{{okr.start | date:'yyyy-MM-dd'}}</nz-tag>
+              <nz-tag [nzColor]="'#f50'">{{okr.end | date:'yyyy-MM-dd'}}</nz-tag>
             </div>
           </ng-template>
         </ul>

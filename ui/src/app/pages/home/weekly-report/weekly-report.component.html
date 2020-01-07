@@ -1,5 +1,5 @@
 <nz-card style="width: 100%;">
-  <nz-page-header [nzGhost]="false" *ngIf="groups.length > 0">
+  <nz-page-header *ngIf="groups.length > 0">
     <nz-page-header-title>小组周报</nz-page-header-title>
     <nz-page-header-subtitle></nz-page-header-subtitle>
     <nz-page-header-extra>
@@ -19,9 +19,9 @@
   >
   </nz-alert>
   <nz-collapse [nzBordered]="false" *ngFor="let reports of reportGroup">
-    <nz-page-header [nzGhost]="false">
+    <nz-page-header>
     <nz-page-header-title>{{reports.user.nickname}}</nz-page-header-title>
-    <nz-page-header-subtitle>{{reports.from}} - {{reports.to}}</nz-page-header-subtitle>
+    <nz-page-header-subtitle>{{reports.from | date:'yyyy-MM-dd'}} - {{reports.to | date:'yyyy-MM-dd'}}</nz-page-header-subtitle>
     </nz-page-header>
     <nz-collapse-panel *ngFor="let report of reports.reports" [nzHeader]="nzTitle" [nzExtra]="extra" [nzActive]="true">
       <ng-template #nzTitle>
@@ -46,7 +46,7 @@
         <nz-tag [nzColor]="'#228B22'" *ngIf="report.task.state == 3">完成</nz-tag>
         <nz-tag [nzColor]="'#E3170D'" *ngIf="report.task.state == 4">取消</nz-tag>
         <nz-tag [nzColor]="'#FFD71f'" *ngIf="report.task.state == 5">暂停</nz-tag>
-        <nz-tag>{{report.task.create_time}}</nz-tag>
+        <nz-tag>{{report.task.create_time | date:'yyyy-MM-dd'}}</nz-tag>
       </ng-template>
       <tr *ngFor="let sche of report.schedules">
         <td>{{sche.create_time | relativeTime}}</td>
