@@ -46,6 +46,7 @@ import {RegisterComponent} from './pages/register/register.component';
 import {TechniqueComponent} from './pages/home/technique/technique.component';
 import {GiveUpTechniqueComponent} from './pages/home/give-up-technique/give-up-technique.component';
 import {CeditPlanStatusComponent} from './pages/home/homepage/homepage-overview/cedit-plan-status/cedit-plan-status.component';
+import {LogoutComponent} from './pages/logout/logout.component';
 
 registerLocaleData(zh);
 
@@ -86,6 +87,7 @@ registerLocaleData(zh);
         RelativeTimePipe,
         TechniqueComponent,
         CeditPlanStatusComponent,
+        LogoutComponent,
     ],
   imports: [
     BrowserModule,

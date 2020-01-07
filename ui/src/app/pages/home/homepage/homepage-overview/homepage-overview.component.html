@@ -1,12 +1,3 @@
-<nz-descriptions nzBordered>
-  <nz-descriptions-item nzTitle="username">{{username}}</nz-descriptions-item>
-  <nz-descriptions-item nzTitle="nickname">{{user.nickname}}</nz-descriptions-item>
-  <nz-descriptions-item nzTitle="id">{{user.id}}</nz-descriptions-item>
-  <nz-descriptions-item nzTitle="身份"><span *ngIf="user.is_admin">管理员</span><span *ngIf="!user.is_admin">普通用户</span></nz-descriptions-item>
-  <nz-descriptions-item nzTitle="邮箱"><a href="mailto:{{user.email}}">{{user.email}}</a></nz-descriptions-item>
-  <nz-descriptions-item nzTitle="手机号">{{user.phone}}</nz-descriptions-item>
-</nz-descriptions>
-
 <div nz-row [nzGutter]="8" style="min-height: 400px;">
   <div nz-col [nzSpan]="12" style="margin-top:10px;">
     <nz-card nz-col [nzTitle]="nzTitle1" style="height: 250px;overflow-y:scroll;">
@@ -56,7 +47,7 @@
   </div>
   <div nz-col [nzSpan]="12" style="margin-top:10px;">
     <nz-card nz-col [nzTitle]="nzTitle3" style="height: 300px;overflow-y:scroll;">
-      <ng-template #nzTitle3><a routerLink="/task/">未来四周的计划</a><a style="float: right;" (click)="createPlan()">编辑</a>
+      <ng-template #nzTitle3><a routerLink="/task/">未来四周的计划</a><a *ngIf="user.username === username" style="float: right;" (click)="createPlan()">编辑</a>
       </ng-template>
       <article nz-typography>
         <quill-view [content]="plan.desc" format="text" theme="snow"></quill-view>
@@ -65,7 +56,7 @@
   </div>
   <div nz-col [nzSpan]="12" style="margin-top:10px;">
     <nz-card nz-col [nzTitle]="nzTitle4" style="height: 300px;overflow-y:scroll;">
-      <ng-template #nzTitle4><a routerLink="/task/">状态指标</a><a style="float: right;" (click)="createStatus()">编辑</a></ng-template>
+      <ng-template #nzTitle4><a routerLink="/task/">状态指标</a><a *ngIf="user.username === username" style="float: right;" (click)="createStatus()">编辑</a></ng-template>
       <article nz-typography>
         <quill-view [content]="status.desc" format="text" theme="snow"></quill-view>
       </article>

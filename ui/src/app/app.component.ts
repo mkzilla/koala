@@ -7,6 +7,7 @@ import Technique from './models/technique';
 import {GiveUpTechniqueComponent} from './pages/home/give-up-technique/give-up-technique.component';
 import {TechniqueComponent} from './pages/home/technique/technique.component';
 import transformTime from './utils/tomatoMethod';
+import {LogoutComponent} from './pages/logout/logout.component';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class AppComponent {
   @ViewChild(GiveUpTechniqueComponent, {static: false }) giveUpTechniqueComponent: GiveUpTechniqueComponent;
   @ViewChild(TechniqueComponent, {static: false }) techniqueComponent: TechniqueComponent;
   @ViewChild('rain', {static: false }) rain: ElementRef;
+  @ViewChild(LogoutComponent, {static: false }) logoutComponent: LogoutComponent;
 
   isCollapsed = false;
   user: User = new User();
