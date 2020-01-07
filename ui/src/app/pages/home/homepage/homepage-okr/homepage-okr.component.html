@@ -28,8 +28,8 @@
       <strong style="margin-right:30px;">关键结果</strong>
       <quill-view [content]="okr.keyResults" format="text" theme="snow"></quill-view>
       <div>
-        <nz-tag [nzColor]="'#87d068'">{{okr.start}}</nz-tag>
-        <nz-tag [nzColor]="'#f50'">{{okr.end}}</nz-tag>
+        <nz-tag [nzColor]="'#87d068'">{{okr.start | date:'yyyy-MM-dd'}}</nz-tag>
+        <nz-tag [nzColor]="'#f50'">{{okr.end | date:'yyyy-MM-dd'}}</nz-tag>
       </div>
     </nz-card>
     <ng-template #editTemplate>
