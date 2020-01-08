@@ -10,8 +10,6 @@ import transformTime from './utils/tomatoMethod';
 import {LogoutComponent} from './pages/logout/logout.component';
 import {TranslateService} from '@ngx-translate/core';
 import { en_US, zh_CN, NzI18nService } from 'ng-zorro-antd/i18n';
-import en from '@angular/common/locales/en';
-import zh from '@angular/common/locales/zh';
 
 
 @Component({
@@ -32,7 +30,11 @@ export class AppComponent implements OnInit {
   counter = '加载番茄时间';
   language = 'en';
 
-  constructor(private authService: AuthService, private cache: CacheService, public translate: TranslateService, private i18n: NzI18nService) {
+  constructor(
+    private authService: AuthService,
+    private cache: CacheService,
+    public translate: TranslateService,
+    private i18n: NzI18nService) {
     translate.addLangs(['en', 'zh-Hans']);
     this.authService.doGetUserInfo('').then((response: any) => {
       if (response !== undefined) {
