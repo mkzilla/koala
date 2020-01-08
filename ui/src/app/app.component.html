@@ -65,7 +65,7 @@
           <button nz-button nzType="primary"><i nz-icon nzType="form" nzTheme="outline"></i>创建任务</button>
         </span>
         <span class="header-trigger" *ngIf="technique.id === 0" (click)="createTechnique()">
-          <button nz-button nzType="primary"><i nz-icon nzType="branches" nzTheme="outline"></i>{{ 'Create tomate time'| translate}}</button>
+          <button nz-button nzType="primary"><i nz-icon nzType="branches" nzTheme="outline"></i>{{ 'New tomate time'| translate}}</button>
         </span>
         <span class="header-trigger" *ngIf="technique.id !== 0"(click)="checkTechnique()">
           <button nz-button nzType="primary"><i nz-icon nzType="clock-circle" nzTheme="outline" nzSpin="true"></i>{{counter}}</button>
