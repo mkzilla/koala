@@ -31,5 +31,7 @@
   "cancel":"取消",
   "pause":"暂停",
   "Adding detailed task introductions helps teams and individuals to review, adding enough details is good work and study habits": "添加详细的任务介绍有助于团队和个人复盘，补充足够的细节是好的工作和学习习惯",
-  "":""
+  "Task signboard": "任务看板",
+  "The task signboard can help you sort out the tasks you have performed recently (past, present, and future). You can drag and drop them to different status lists. Click on the task title to view the task details page.":"任务看板能够帮助你梳理最近（过去、现在和今后）在执行的任务，你可以通过拖放，把他们放在不同的状态列表中。点击任务标题，可以进入到任务的细节页面。",
+  "": ""
 }
