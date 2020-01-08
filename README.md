@@ -43,6 +43,7 @@ $ # please edit koala/hack/docker/koala.json
 $ cd koala/hack/docker && sudo docker-compose up
 
 ```
+
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmkzilla%2Fkoala.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmkzilla%2Fkoala?ref=badge_large)
 
