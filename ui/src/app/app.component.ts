@@ -43,12 +43,6 @@ export class AppComponent implements OnInit {
       }
     });
     this.pullTechnique();
-    setInterval(() => {
-      this.counter = transformTime(this.technique.createTime);
-      if (this.counter === '已完成') {
-        this.rain.nativeElement.pause();
-      }
-    }, 1000);
   }
 
   ngOnInit() {
@@ -81,9 +75,17 @@ export class AppComponent implements OnInit {
       if (data !== undefined) {
         this.technique = data;
         this.rain.nativeElement.play();
+        setInterval(() => {
+          this.counter = transformTime(this.technique.createTime);
+          if (this.counter === '已完成') {
+            this.rain.nativeElement.pause();
+          }
+        }, 1000);
       } else {
         this.rain.nativeElement.pause();
       }
+    }).catch(() => {
+      this.rain.nativeElement.pause();
     });
   }
 
@@ -103,6 +105,12 @@ export class AppComponent implements OnInit {
      if (data !== undefined) {
        this.technique = data;
        this.rain.nativeElement.play();
+       setInterval(() => {
+         this.counter = transformTime(this.technique.createTime);
+         if (this.counter === '已完成') {
+           this.rain.nativeElement.pause();
+         }
+       }, 1000);
      }
    });
   }
