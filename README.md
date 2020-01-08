@@ -7,11 +7,11 @@
 <h3 align="center">Great open source task management system with free version and commercial support.</h3>
 
 [![Build Statue](https://travis-ci.org//mkzilla/koala.svg?branch=master)](https://travis-ci.org/mkzilla/koala)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmkzilla%2Fkoala.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmkzilla%2Fkoala?ref=badge_shield)
 [![Build Release](https://img.shields.io/github/release/chengyumeng/koala.svg)](https://github.com/mkzilla/koala/releases)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mkzilla/koala)](https://goreportcard.com/report/github.com/mkzilla/koala)
 [![Expose APIServer Docker Image](https://github.com/mkzilla/koala/workflows/Expose%20APIServer%20Docker%20Image/badge.svg)](https://github.com/mkzilla/koala/actions)
 [![Expose UI Docker Image](https://github.com/mkzilla/koala/workflows/Expose%20UI%20Docker%20Image/badge.svg)](https://github.com/mkzilla/koala/actions)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmkzilla%2Fkoala.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmkzilla%2Fkoala?ref=badge_shield)
 
 <p align="center">
   <a href="http://koala.mkzilla.com">
@@ -44,9 +44,8 @@ $ cd koala/hack/docker && sudo docker-compose up
 
 ```
 
-![flash-slothmore](flash-slothmore.jpg)
-
-
-
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmkzilla%2Fkoala.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmkzilla%2Fkoala?ref=badge_large)
+
+
+![flash-slothmore](flash-slothmore.jpg)

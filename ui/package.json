@@ -19,6 +19,8 @@
     "@angular/platform-browser": "~8.2.0",
     "@angular/platform-browser-dynamic": "~8.2.0",
     "@angular/router": "~8.2.0",
+    "@ngx-translate/core": "^11.0.1",
+    "@ngx-translate/http-loader": "^4.0.0",
     "echarts": "^4.5.0",
     "ng-zorro-antd": "^8.4.1",
     "ngx-quill": "^7.3.3",

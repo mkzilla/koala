@@ -1,9 +1,9 @@
-<nz-modal [(nzVisible)]="createObj || editObj" nzTitle="创建/编辑目标（Objective）" (nzOnCancel)="handleCancel()" (nzOnOk)="handleConfirmCreateObj()" nzWidth="75%">
+<nz-modal [(nzVisible)]="createObj || editObj" nzTitle="{{'New(Edit) Objective' | translate}}" (nzOnCancel)="handleCancel()" (nzOnOk)="handleConfirmCreateObj()" nzWidth="75%">
   <nz-input-group [nzSuffix]="suffixTemplate" style="margin-bottom: 10px;">
-    <input type="text" nz-input [(ngModel)]="objective.title" placeholder="请简明扼要描述目标标题" />
+    <input type="text" nz-input [(ngModel)]="objective.title" placeholder="{{'Please describe the title of the objective concisely' | translate }}" />
   </nz-input-group>
   <div style="margin-bottom: 10px;">
-    <strong>基本描述</strong>
+    <strong>{{'Summary'| translate}}</strong>
   </div>
   <ng-template #suffixTemplate>
     <i
@@ -16,7 +16,7 @@
       (click)="objective.title = ''"
     ></i>
   </ng-template>
-  <quill-editor [(ngModel)]="objective.desc" placeholder="目标的详情并不是用来描述 KR，只是补充标题之外的细节" format="html" theme="snow" [styles]="{height: '50px'}">
+  <quill-editor [(ngModel)]="objective.desc" placeholder="{{'The Summary is not used to describe key results, but to supplement details beyond the title' | translate}}" format="html" theme="snow" [styles]="{height: '50px'}">
     <div quill-editor-toolbar>
       <span class="ql-formats">
         <button class="ql-bold"></button>
@@ -46,7 +46,7 @@
   <div style="margin-bottom: 10px;margin-top: 10px;">
     <strong>关键结果</strong>
   </div>
-  <quill-editor [(ngModel)]="objective.keyResults" placeholder="请精确描述目标的关键结果" format="html" theme="snow" [styles]="{height: '150px'}">
+  <quill-editor [(ngModel)]="objective.keyResults" placeholder="{{'Please accurately describe the key results of the objective' | translate}}" format="html" theme="snow" [styles]="{height: '150px'}">
     <div quill-editor-toolbar>
       <span class="ql-formats">
         <select class="ql-font"></select>
@@ -93,16 +93,15 @@
     </div>
   </quill-editor>
   <div>
-    <strong style="margin-right:30px;margin-top: 10px;">完成度</strong>
+    <strong style="margin-right:30px;margin-top: 10px;">{{'Degree of completion' | translate}}</strong>
     <nz-rate [(ngModel)]="objective.score"></nz-rate>
   </div>
   <div style="margin-top: 10px;">
-    <strong style="margin-right:30px;">开始时间</strong>
+    <strong style="margin-right:30px;">{{'Starting time' | translate}}</strong>
     <nz-date-picker [(ngModel)]="objective.start"></nz-date-picker>
   </div>
   <div style="margin-top: 10px;">
-    <strong style="margin-right:30px;">截止时间</strong>
+    <strong style="margin-right:30px;">{{'Deadline' | translate}}</strong>
     <nz-date-picker [(ngModel)]="objective.end"></nz-date-picker>
   </div>
-
 </nz-modal>

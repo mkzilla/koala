@@ -1,6 +1,6 @@
-<nz-modal [(nzVisible)]="isVisible" nzTitle="创建任务" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzWidth="75%">
+<nz-modal [(nzVisible)]="isVisible" nzTitle="{{'Create a new task' | translate}}" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzWidth="75%">
   <nz-input-group [nzSuffix]="suffixTemplate">
-    <input type="text" nz-input [(ngModel)]="task.title" placeholder="请简明扼要描述任务标题" />
+    <input type="text" nz-input [(ngModel)]="task.title" placeholder="{{'Please describe the title of the task concisely' | translate}}" />
   </nz-input-group>
   <ng-template #suffixTemplate>
     <i
@@ -14,26 +14,26 @@
     ></i>
   </ng-template>
   <div nz-row nzType="flex" style="margin-top: 10px;">
-    <nz-form-label [nzNoColon]="false" [nzSpan]="3">重要性</nz-form-label>
+    <nz-form-label [nzNoColon]="false" [nzSpan]="3">{{'importance' | translate}}</nz-form-label>
     <div nz-col [nzSpan]="3">
       <nz-slider [(ngModel)]="task.importance" [nzMin]="1" [nzMax]="5"></nz-slider>
     </div>
-    <nz-form-label [nzNoColon]="false" [nzSpan]="3">优先级</nz-form-label>
+    <nz-form-label [nzNoColon]="false" [nzSpan]="3">{{'priority' | translate}}</nz-form-label>
     <div nz-col [nzSpan]="3">
       <nz-slider [(ngModel)]="task.priority" [nzMin]="1" [nzMax]="5"></nz-slider>
     </div>
     <div nz-col [nzSpan]="3">
       <nz-select [(ngModel)]="task.state" nzPlaceHolder="Choose">
-        <nz-option [nzValue]=0 nzLabel="没有进展"></nz-option>
-        <nz-option [nzValue]=1 nzLabel="即将开始"></nz-option>
-        <nz-option [nzValue]=2 nzLabel="进行中"></nz-option>
-        <nz-option [nzValue]=3 nzLabel="完成"></nz-option>
-        <nz-option [nzValue]=4 nzLabel="取消"></nz-option>
-        <nz-option [nzValue]=5 nzLabel="暂停"></nz-option>
+        <nz-option [nzValue]=0 nzLabel="{{'no progress' | translate}}"></nz-option>
+        <nz-option [nzValue]=1 nzLabel="{{'will start' | translate}}"></nz-option>
+        <nz-option [nzValue]=2 nzLabel="{{'doing' | translate}}"></nz-option>
+        <nz-option [nzValue]=3 nzLabel="{{'done' | translate}}"></nz-option>
+        <nz-option [nzValue]=4 nzLabel="{{'cancel' | translate}}"></nz-option>
+        <nz-option [nzValue]=5 nzLabel="{{'pause' | translate}}"></nz-option>
       </nz-select>
     </div>
   </div>
-  <quill-editor [(ngModel)]="task.desc" placeholder="添加详细的任务介绍有助于团队和个人复盘，补充足够的细节是好的工作和学习习惯" format="html" theme="snow" [styles]="{height: '250px'}">
+  <quill-editor [(ngModel)]="task.desc" placeholder="{{'Adding detailed task introductions helps teams and individuals to review, adding enough details is good work and study habits' | translate}}" format="html" theme="snow" [styles]="{height: '250px'}">
     <div quill-editor-toolbar>
       <span class="ql-formats">
         <select class="ql-font"></select>

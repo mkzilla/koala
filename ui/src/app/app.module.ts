@@ -1,18 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
+import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IconsProviderModule } from './icons-provider.module';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { QuillModule } from 'ngx-quill';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { registerLocaleData } from '@angular/common';
-import zh from '@angular/common/locales/zh';
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CreateTaskComponent } from './pages/home/create-task/create-task.component';
@@ -21,7 +20,6 @@ import { RelativeTimePipe } from './utils/pipes/relativeTime.pipe';
 import { ViewTaskComponent } from './pages/home/view-task/view-task.component';
 import {ListRecentTaskComponent} from './pages/home/list-recent-task/list-recent-task.component';
 import {ScheduleTaskComponent} from './pages/home/schedule-task/schedule-task.component';
-import {CommentTaskComponent} from './pages/home/comment-task/comment-task.component';
 import {EditTaskComponent} from './pages/home/edit-task/edit-task.component';
 import {ListTaskCommentComponent} from './pages/home/list-task-comment/list-task-comment.component';
 import {TaskCardComponent} from './pages/home/task-card/task-card.component';
@@ -48,7 +46,9 @@ import {GiveUpTechniqueComponent} from './pages/home/give-up-technique/give-up-t
 import {CeditPlanStatusComponent} from './pages/home/homepage/homepage-overview/cedit-plan-status/cedit-plan-status.component';
 import {LogoutComponent} from './pages/logout/logout.component';
 
-registerLocaleData(zh);
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
     declarations: [
@@ -77,7 +77,6 @@ registerLocaleData(zh);
         ListRecentTaskComponent,
         TaskCardComponent,
         ScheduleTaskComponent,
-        CommentTaskComponent,
         EditTaskComponent,
         ViewTaskComponent,
         StatisticsComponent,
@@ -100,7 +99,13 @@ registerLocaleData(zh);
     BrowserAnimationsModule,
     ReactiveFormsModule,
     QuillModule.forRoot(),
-
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    })
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }, DatePipe],

@@ -2,8 +2,8 @@
   <div nz-row  *ngIf="showAlert">
     <nz-alert
       nzType="info"
-      nzMessage="任务看板"
-      nzDescription="任务看板能够帮助你梳理最近（过去、现在和今后）在执行的任务，你可以通过拖放，把他们放在不同的状态列表中。点击任务标题，可以进入到任务的细节页面。"
+      nzMessage="{{'Task signboard' | translate}}"
+      nzDescription="{{'The task signboard can help you sort out the tasks you have performed recently (past, present, and future). You can drag and drop them to different status lists. Click on the task title to view the task details page.' | translate}}"
       nzShowIcon
     >
     </nz-alert>
@@ -12,17 +12,17 @@
   <div nz-row>
     <div nz-col [nzSpan]="7" style="margin-left: 16px;background: #ECECEC;">
       <nz-card style="width: 100%;margin-top: 1px;text-align:center;">
-        <span>即将开始</span>
+        <span>{{'will start' | translate}}</span>
       </nz-card>
     </div>
     <div nz-col [nzSpan]="8" style="margin-left: 16px;background: #ECECEC;">
       <nz-card style="width: 100%;margin-top: 1px;text-align:center;">
-        <span><i nz-icon nzType="sync" nzTheme="outline" nzSpin="true"></i> 正在进行中</span>
+        <span><i nz-icon nzType="sync" nzTheme="outline" nzSpin="true"></i> {{'doing' | translate}}</span>
       </nz-card>
     </div>
     <div nz-col [nzSpan]="7" style="margin-left: 16px;background: #ECECEC;">
       <nz-card style="width: 100%;margin-top: 1px;text-align:center;">
-        近期已完成
+        {{'done' | translate}}
       </nz-card>
     </div>
   </div>
