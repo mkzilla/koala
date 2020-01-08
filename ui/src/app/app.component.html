@@ -55,11 +55,17 @@
         <span style="float: right;padding-right: 40px;font-size: large;">
           <a (click)="logoutComponent.showModal()"><i nz-icon nzType="user"></i>  {{user.nickname}}</a>
         </span>
+        <span style="float: right;padding-right: 40px;font-size: large;">
+          <nz-select [(ngModel)]="language" (ngModelChange)="changeLanguage()" style="width: 100px;">
+            <nz-option [nzLabel]="'English'" [nzValue]="'en'"></nz-option>
+            <nz-option [nzLabel]="'简体中文'" [nzValue]="'zh-Hans'"></nz-option>
+          </nz-select>
+        </span>
         <span class="header-trigger" (click)="createTask.showModal()">
           <button nz-button nzType="primary"><i nz-icon nzType="form" nzTheme="outline"></i>创建任务</button>
         </span>
         <span class="header-trigger" *ngIf="technique.id === 0" (click)="createTechnique()">
-          <button nz-button nzType="primary"><i nz-icon nzType="branches" nzTheme="outline"></i>创建番茄</button>
+          <button nz-button nzType="primary"><i nz-icon nzType="branches" nzTheme="outline"></i>{{ 'Create tomate time'| translate}}</button>
         </span>
         <span class="header-trigger" *ngIf="technique.id !== 0"(click)="checkTechnique()">
           <button nz-button nzType="primary"><i nz-icon nzType="clock-circle" nzTheme="outline" nzSpin="true"></i>{{counter}}</button>
