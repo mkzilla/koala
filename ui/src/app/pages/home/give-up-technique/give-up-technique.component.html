@@ -1,7 +1,7 @@
-<nz-modal [(nzVisible)]="isVisible" nzTitle="放弃番茄" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+<nz-modal [(nzVisible)]="isVisible" nzTitle="{{'Give up a pomodoro period' | translate}}" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
   <nz-alert
     nzType="warning"
-    nzMessage="根据番茄工作法，一个番茄时间是 25 分钟，您是否确定决定终止一个正在进行的番茄时间？"
+    nzMessage="{{'According to the Pomodoro Technique, a pomodoro period is 25 minutes. Are you sure you decide to terminate an ongoing pomodoro time?' | translate}}"
     nzDescription=""
     nzShowIcon
   ></nz-alert>
