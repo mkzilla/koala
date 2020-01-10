@@ -12,7 +12,7 @@
 </nz-list>
 
 <nz-divider nzDashed [nzText]="text">
-  <ng-template #text><i nz-icon nzType="compass" nzTheme="outline"></i> 个人当前 OKR </ng-template>
+  <ng-template #text><i nz-icon nzType="compass" nzTheme="outline"></i> {{'Personal current objectives' | translate}} </ng-template>
 </nz-divider>
 
 <nz-table [nzData]="okrs" [nzHideOnSinglePage]="true">

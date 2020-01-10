@@ -93,6 +93,10 @@
   "My Tasks":"我的任务",
   "Watched":"关注",
   "Voted":"投票",
-  "Weekly Reports":"周报"
-
+  "Weekly Reports":"周报",
+  "Personal current objectives":"个人当前的目标",
+  "Load More": "加载更多",
+  "progress": "进展",
+  "comment": "评论",
+  "Please provide a concise description of your work or your idea on this task":"请简明扼要描述你的工作进展或者对本任务的看法"
 }

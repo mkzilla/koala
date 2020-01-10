@@ -1,5 +1,5 @@
 <nz-modal [(nzVisible)]="isVisible" nzTitle="添加{{comment.type}}" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-  <quill-editor [(ngModel)]="comment.info" format="html" theme="snow" [styles]="{height: '100px'}" placeholder="请简明扼要描述你的工作进展或者对本任务的看法">
+  <quill-editor [(ngModel)]="comment.info" format="html" theme="snow" [styles]="{height: '100px'}" placeholder="{{'Please provide a concise description of your work or your idea on this task' | translate}}">
     <div quill-editor-toolbar>
       <span class="ql-formats">
         <button class="ql-bold"></button>
