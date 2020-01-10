@@ -1,28 +1,28 @@
 <nz-card style="width: 100%;">
   <div nz-row [nzGutter]="8">
     <div nz-col [nzSpan]="4" style="margin-top:10px;">
-      <button nz-button nzType="primary" nzSize="large" (click)="createGroup.showModal()"><i nz-icon nzType="usergroup-add"></i>创建组</button>
+      <button nz-button nzType="primary" nzSize="large" (click)="createGroup.showModal()"><i nz-icon nzType="usergroup-add"></i>{{'New group' | translate}}</button>
     </div>
     <div nz-col [nzSpan]="12" style="margin-top:10px;">
       <nz-button-group nzSize="large">
-        <button nz-button nzType="primary" (click)="pageChange(-1)"><i nz-icon nzType="left"></i>上一页</button>
-        <button nz-button nzType="primary" (click)="pageChange(1)">下一页<i nz-icon nzType="right"></i></button>
+        <button nz-button nzType="primary" (click)="pageChange(-1)"><i nz-icon nzType="left"></i>{{'Previous' | translate}}</button>
+        <button nz-button nzType="primary" (click)="pageChange(1)">{{'Next' | translate}}<i nz-icon nzType="right"></i></button>
       </nz-button-group>
     </div>
     <div nz-col [nzSpan]="8" style="margin-top:10px;">
       <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-        <input type="text" nz-input placeholder="input search group name" [(ngModel)]="name" (change)="search()"/>
+        <input type="text" nz-input placeholder="{{'please input the group name' | translate}}" [(ngModel)]="name" (change)="search()"/>
       </nz-input-group>
       <ng-template #suffixButton>
-        <button nz-button nzType="primary" nzSize="large" nzSearch (click)="search()">Search</button>
+        <button nz-button nzType="primary" nzSize="large" nzSearch (click)="search()">{{'Search' | translate}}</button>
       </ng-template>
     </div>
   </div>
   <br>
   <nz-alert
     nzType="warning"
-    nzMessage="隐私权"
-    nzDescription="mkzilla koala 注重用户隐私，个人用户的任务数据只和小组成员共享。如果不想和其他人分享的自己的工作和学习计划，注意不要加入任何小组。如果你想退出小组，点击查看用户操作即可。"
+    nzMessage="{{'Privacy policy' | translate}}"
+    nzDescription="{{'mkzilla koala focuses on protecting the privacy of users. Individual users\' task data is only shared with team members. If you don\'t want to share your work and study plans with others, be careful not to join any group. If you want to leave the group, click View User Action.' | translate}}"
     nzShowIcon
   >
   </nz-alert>
@@ -30,11 +30,11 @@
   <nz-table [nzData]="groups" [nzFrontPagination]="false" [nzShowPagination]="false">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>名字</th>
-      <th>简介</th>
-      <th>管理员</th>
-      <th>操作</th>
+      <th>{{'ID' | translate}}</th>
+      <th>{{'username' | translate}}</th>
+      <th>{{'description' | translate}}</th>
+      <th>{{'admin' | translate}}</th>
+      <th>{{'action' | translate}}</th>
     </tr>
     </thead>
     <tbody>
@@ -44,21 +44,21 @@
       <td>{{ group.desc }}</td>
       <td>{{ group.admin }}</td>
       <td>
-        <a (click)="listUsers.showModal(group)">查看用户</a>
+        <a (click)="listUsers.showModal(group)">{{'view users' | translate}}</a>
       </td>
     </tr>
     </tbody>
   </nz-table>
   <br>
-  <nz-divider nzText="邀请你加入的组"></nz-divider>
+  <nz-divider nzText="{{'Invite to join' | translate}}"></nz-divider>
   <nz-table [nzData]="forcheck" [nzFrontPagination]="false" [nzShowPagination]="false">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>名字</th>
-      <th>简介</th>
-      <th>管理员</th>
-      <th>操作</th>
+      <th>{{'ID' | translate}}</th>
+      <th>{{'username' | translate}}</th>
+      <th>{{'description' | translate}}</th>
+      <th>{{'admin' | translate}}</th>
+      <th>{{'action' | translate}}</th>
     </tr>
     </thead>
     <tbody>
@@ -68,8 +68,8 @@
       <td>{{ group.desc }}</td>
       <td>{{ group.admin }}</td>
       <td>
-        <a nz-button nzType="link" (click)="checkin(group)">加入</a>
-        <a nz-button nzType="link" (click)="ignore(group)">忽略</a>
+        <a nz-button nzType="link" (click)="checkin(group)">{{'join' | translate}}</a>
+        <a nz-button nzType="link" (click)="ignore(group)">{{'ignore' | translate}}</a>
       </td>
     </tr>
     </tbody>
