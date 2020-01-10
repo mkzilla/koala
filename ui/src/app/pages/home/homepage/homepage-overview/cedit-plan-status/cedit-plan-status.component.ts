@@ -2,7 +2,6 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {TaskService} from '../../../../../services/task.service';
 import Plan from '../../../../../models/plan';
 import Status from '../../../../../models/status';
-import Objective from '../../../../../models/objective';
 
 @Component({
   selector: 'app-cedit-plan-status',
