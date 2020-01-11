@@ -11,6 +11,7 @@
   "basicLogin": {
     "enable": true
   },
+  "tokenMaxAge":86400,
   "basicRegister": {
     "enable": true,
     "hostname":"smtp.qq.com",

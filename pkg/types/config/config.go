@@ -13,6 +13,7 @@ type Config struct {
 	Homepage          string        `json:"homepage" yaml:"homepage"`
 	Addr              string        `json:"addr" yaml:"addr"`
 	DataSource        DataSource    `json:"datasource" yaml:"datasource"`
+	TokenMaxAge       int           `json:"tokenMaxAge" yaml:"tokenMaxAge"`
 	BasicLogin        BasicLogin    `json:"basicLogin" yaml:"basicLogin"`
 	BasicRegister     BasicRegister `json:"basicRegister" yaml:"basicRegister"`
 	GithubLogin       OAuthIF       `json:"githubLogin" yaml:"githubLogin"`

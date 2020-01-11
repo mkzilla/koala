@@ -84,13 +84,13 @@ func LoginWithOAuth2(c *gin.Context) {
 		types.HandleError(c, types.BadSystemRSAService, err)
 		return
 	}
-	c.SetCookie("token", apiToken, 86400, "/", "", false, false)
+	c.SetCookie("token", apiToken, config.Configs.TokenMaxAge, "/", "", false, false)
 	c.Redirect(http.StatusFound, "/")
 }
 
 func createToken(id int64) (string, error) {
 	now := time.Now()
-	expSecond := 86400
+	expSecond := config.Configs.TokenMaxAge
 	jt := jwt.NewWithClaims(jwt.SigningMethodRS256, config.Token{
 		"koala",
 		now.Unix(),
@@ -223,7 +223,7 @@ func LoginWithPassword(c *gin.Context) {
 			types.HandleError(c, types.BadSystemRSAService, err)
 			return
 		}
-		c.SetCookie("token", apiToken, 86400, "/", "", false, false)
+		c.SetCookie("token", apiToken, config.Configs.TokenMaxAge, "/", "", false, false)
 		c.JSON(http.StatusOK, "")
 		return
 	}

@@ -12,5 +12,8 @@ func InitConfig(filepath string) {
 		panic(err)
 	}
 	cfg.BasicRegister.Template = cfg.Read(cfg.BasicRegister.Template)
+	if cfg.TokenMaxAge < 1000 {
+		cfg.TokenMaxAge = 86400
+	}
 	config.Configs = cfg
 }
