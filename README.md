@@ -10,8 +10,8 @@
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmkzilla%2Fkoala.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmkzilla%2Fkoala?ref=badge_shield)
 [![Build Release](https://img.shields.io/github/release/chengyumeng/koala.svg)](https://github.com/mkzilla/koala/releases)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mkzilla/koala)](https://goreportcard.com/report/github.com/mkzilla/koala)
-[![Expose APIServer Docker Image](https://github.com/mkzilla/koala/workflows/Expose%20APIServer%20Docker%20Image/badge.svg)](https://github.com/mkzilla/koala/actions)
-[![Expose UI Docker Image](https://github.com/mkzilla/koala/workflows/Expose%20UI%20Docker%20Image/badge.svg)](https://github.com/mkzilla/koala/actions)
+[![APIServer](https://github.com/mkzilla/koala/workflows/APIServer/badge.svg)](https://github.com/mkzilla/koala/actions)
+[![UI](https://github.com/mkzilla/koala/workflows/UI/badge.svg)](https://github.com/mkzilla/koala/actions)
 
 <p align="center">
   <a href="http://koala.mkzilla.com">

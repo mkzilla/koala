@@ -1,4 +1,4 @@
-name: Expose APIServer Docker Image
+name: APIServer
 on:
   push:
     branches:

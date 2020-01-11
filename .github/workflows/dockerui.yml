@@ -1,4 +1,4 @@
-name: Expose UI Docker Image
+name: UI
 on:
   push:
     branches:
