@@ -68,37 +68,35 @@
 </nz-alert>
 
 <nz-list>
-    <nz-list-item *ngFor="let item of tasks">
+    <nz-list-item *ngFor="let task of tasks">
       <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
         <ng-template #nzTitle>
-          <a routerLink="/homepage/{{item.task_log.username}}">{{ item.nickname }}</a>  对 <a>{{ item.task_log.to_username }}</a>
-          <a routerLink="/task/{{item.task_log.task_id}}"> {{ item.title }}</a> {{ item.task_log.behavior }}
-          <i style="float: right;">{{item.task_log.create_time | relativeTime}}</i>
+          <a routerLink="/homepage/{{task.task_log.username}}">{{ task.nickname }}</a>  对 <a>{{ task.task_log.to_username }}</a>
+          <a routerLink="/task/{{task.task_log.task_id}}"> {{ task.title }}</a> {{ task.task_log.behavior }}
+          <i style="float: right;">{{task.task_log.create_time | relativeTime}}</i>
         </ng-template>
         <ng-template #nzDescription>
-          <nz-tag [nzColor]="'#3D59AB'" *ngIf="item.importance == 1">不重要</nz-tag>
-          <nz-tag [nzColor]="'#33A1C9'" *ngIf="item.importance == 2">一般重要</nz-tag>
-          <nz-tag [nzColor]="'#03A89E'" *ngIf="item.importance == 3">重要</nz-tag>
-          <nz-tag [nzColor]="'#00C78C'" *ngIf="item.importance == 4">很重要</nz-tag>
-          <nz-tag [nzColor]="'#1E90FF'" *ngIf="item.importance == 5">极其重要</nz-tag>
-
-          <nz-tag [nzColor]="'#DDA0DD'" *ngIf="item.priority == 1">不紧急</nz-tag>
-          <nz-tag [nzColor]="'#DA70D6'" *ngIf="item.priority == 2">一般紧急</nz-tag>
-          <nz-tag [nzColor]="'#A066D3'" *ngIf="item.priority == 3">紧急</nz-tag>
-          <nz-tag [nzColor]="'#8A2BE2'" *ngIf="item.priority == 4">很紧急</nz-tag>
-          <nz-tag [nzColor]="'#9933FA'" *ngIf="item.priority == 5">极其紧急</nz-tag>
-
-          <nz-tag [nzColor]="'#FFB6C1'" *ngIf="item.state == '0'">没有进展</nz-tag>
-          <nz-tag [nzColor]="'#FFD700'" *ngIf="item.state == '1'">即将开始</nz-tag>
-          <nz-tag [nzColor]="'#32CD32'" *ngIf="item.state == '2'">进行中</nz-tag>
-          <nz-tag [nzColor]="'#228B22'" *ngIf="item.state == '3'">完成</nz-tag>
-          <nz-tag [nzColor]="'#E3170D'" *ngIf="item.state == '4'">取消</nz-tag>
-          <nz-tag [nzColor]="'#FFD71f'" *ngIf="item.state == '5'">暂停</nz-tag>
+          <nz-tag [nzColor]="'#3D59AB'" *ngIf="task.importance == 1">{{'unimportant' | translate}}</nz-tag>
+          <nz-tag [nzColor]="'#33A1C9'" *ngIf="task.importance == 2">{{'a bit important' | translate}}</nz-tag>
+          <nz-tag [nzColor]="'#03A89E'" *ngIf="task.importance == 3">{{'important' | translate}}</nz-tag>
+          <nz-tag [nzColor]="'#00C78C'" *ngIf="task.importance == 4">{{'very important' | translate}}</nz-tag>
+          <nz-tag [nzColor]="'#1E90FF'" *ngIf="task.importance == 5">{{'extremely important' | translate}}</nz-tag>
+          <nz-tag [nzColor]="'#DDA0DD'" *ngIf="task.priority == 1">{{'not urgent' | translate}}</nz-tag>
+          <nz-tag [nzColor]="'#DA70D6'" *ngIf="task.priority == 2">{{'a little urgent' | translate}}</nz-tag>
+          <nz-tag [nzColor]="'#A066D3'" *ngIf="task.priority == 3">{{'urgent' | translate}}</nz-tag>
+          <nz-tag [nzColor]="'#8A2BE2'" *ngIf="task.priority == 4">{{'very urgent' | translate}}</nz-tag>
+          <nz-tag [nzColor]="'#9933FA'" *ngIf="task.priority == 5">{{'imminent' | translate}}</nz-tag>
+          <nz-tag [nzColor]="'#FFB6C1'" *ngIf="task.state == 0">{{'no progress' | translate}}</nz-tag>
+          <nz-tag [nzColor]="'#FFD700'" *ngIf="task.state == 1">{{'will start' | translate}}</nz-tag>
+          <nz-tag [nzColor]="'#32CD32'" *ngIf="task.state == 2">{{'doing' | translate}}</nz-tag>
+          <nz-tag [nzColor]="'#228B22'" *ngIf="task.state == 3">{{'done' | translate}}</nz-tag>
+          <nz-tag [nzColor]="'#E3170D'" *ngIf="task.state == 4">{{'cancel' | translate}}</nz-tag>
+          <nz-tag [nzColor]="'#FFD71f'" *ngIf="task.state == 5">{{'pause' | translate}}</nz-tag>
         </ng-template>
       </nz-list-item-meta>
     </nz-list-item>
 </nz-list>
 <br>
 <a *ngIf="hasMore" nz-card (click)="pageNumber = pageNumber + 1;search();">
-  <h2 style="text-align: center;">加载更多</h2>
+  <h2 style="text-align: center;">{{'Load More' | translate}}</h2>
 </a>

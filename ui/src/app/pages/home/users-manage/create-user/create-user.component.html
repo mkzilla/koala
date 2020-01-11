@@ -1,4 +1,4 @@
-<nz-modal [(nzVisible)]="isVisible" nzTitle="创建用户" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+<nz-modal [(nzVisible)]="isVisible" nzTitle="{{'Create a new user' | translate}}" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
   <p>
     <input nz-input placeholder="username" [(ngModel)]="user.username" />
   </p>

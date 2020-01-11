@@ -4,14 +4,14 @@
       <strong style="margin-left: 15px;font-size: large;">koala</strong>
     </a>
   </li>
-  <li nz-menu-item style="float: right;">捐赠</li>
-  <li nz-menu-item style="float: right;">常见问题</li>
-  <li nz-menu-item style="float: right;">说明书</li>
-  <li nz-menu-item style="float: right;">关于</li>
+  <li nz-menu-item style="float: right;">{{'Donate' | translate}}</li>
+  <li nz-menu-item style="float: right;">{{'FAQ' | translate}}</li>
+  <li nz-menu-item style="float: right;">{{'Manual' | translate}}</li>
+  <li nz-menu-item style="float: right;">{{'About' | translate}}</li>
 </ul>
 <div class="container">
   <p><strong style="font-size: xx-large;color: black;">koala v{{version}}</strong></p>
-  <p style="text-align: center;"><strong>为高效能人士服务</strong></p>
+  <p style="text-align: center;"><strong>{{'Serving High-Performance People' | translate}}</strong></p>
   <form *ngIf="config.enablePassword" nz-form [formGroup]="basicLogin" class="login-form" (ngSubmit)="onLogin()">
     <nz-form-item>
       <nz-form-control nzErrorTip="Please input your username!">
@@ -29,19 +29,19 @@
     </nz-form-item>
     <nz-form-item>
       <nz-form-control>
-        <button nz-button class="login-form-button" [nzType]="'primary'">登录</button>
-        <a *ngIf="config.enableRegister" class="login-form-forgot" class="login-form-forgot" routerLink="/register">信任 koala，我要注册</a>
+        <button nz-button class="login-form-button" [nzType]="'primary'">{{'Login' | translate}}</button>
+        <a *ngIf="config.enableRegister" class="login-form-forgot" class="login-form-forgot" routerLink="/register">{{'Trust koala and register' | translate}}</a>
       </nz-form-control>
     </nz-form-item>
   </form>
   <nz-form-control>
     <button class="login-form-button" *ngIf="config.enableGithub" nz-button (click)="onOAuth('github')" [nzType]="'primary'">
-      <i nz-icon nzType="github" nzTheme="outline"></i>使用 GitHub 登录
+      <i nz-icon nzType="github" nzTheme="outline"></i>{{'Login via Github' | translate}}
     </button>
   </nz-form-control>
   <nz-form-control>
     <button class="login-form-button" *ngIf="config.enableBasicOAuthV2" nz-button (click)="onOAuth('basic')" [nzType]="'primary'">
-      <i nz-icon nzType="login" nzTheme="outline"></i>使用 OAuth2 登录
+      <i nz-icon nzType="login" nzTheme="outline"></i>{{'Login via OAuth 2.0'}}
     </button>
   </nz-form-control>
 </div>

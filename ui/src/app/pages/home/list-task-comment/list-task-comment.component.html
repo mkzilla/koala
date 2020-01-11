@@ -9,8 +9,8 @@
         ></nz-avatar>
         <nz-comment-content>
           <div style="float: left;padding-top: 10px;">
-            <nz-tag [nzColor]="'#3D59AB'" *ngIf="c.type == '评论'">{{c.type}}</nz-tag>
-            <nz-tag [nzColor]="'#33A1C9'" *ngIf="c.type == '进展'">{{c.type}}</nz-tag>
+            <nz-tag [nzColor]="'#3D59AB'" *ngIf="c.type == '评论'">{{'progress' | translate}}</nz-tag>
+            <nz-tag [nzColor]="'#33A1C9'" *ngIf="c.type == '进展'">{{'comment' | translate}}</nz-tag>
           </div>
           <quill-view [content]="c.info" format="text" theme="snow"></quill-view>
         </nz-comment-content>

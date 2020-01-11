@@ -2,37 +2,37 @@
   <nz-card-tab>
     <nz-tabset nzSize="large" nzLinkRouter>
       <nz-tab>
-        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 0 }" queryParamsHandling="merge">概览</a>
+        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 0 }" queryParamsHandling="merge">{{'Overview' | translate}}</a>
         <ng-template nz-tab>
           <app-homepage-overview username="{{username}}"></app-homepage-overview>
         </ng-template>
       </nz-tab>
       <nz-tab>
-        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 1 }" queryParamsHandling="merge">我的任务</a>
+        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 1 }" queryParamsHandling="merge">{{'My Tasks' | translate}}</a>
         <ng-template nz-tab>
           <app-homepage-tasks username="{{username}}"></app-homepage-tasks>
         </ng-template>
       </nz-tab>
       <nz-tab>
-        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 2 }" queryParamsHandling="merge">关注</a>
+        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 2 }" queryParamsHandling="merge">{{'Watched' | translate}}</a>
         <ng-template nz-tab>
           <app-homepage-watch username="{{username}}"></app-homepage-watch>
         </ng-template>
       </nz-tab>
       <nz-tab>
-        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 3 }" queryParamsHandling="merge">投票</a>
+        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 3 }" queryParamsHandling="merge">{{'Voted' | translate}}</a>
         <ng-template nz-tab>
           <app-homepage-vote username="{{username}}"></app-homepage-vote>
         </ng-template>
       </nz-tab>
       <nz-tab>
-        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 4 }" queryParamsHandling="merge">周报</a>
+        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 4 }" queryParamsHandling="merge">{{'Weekly Reports' | translate}}</a>
         <ng-template nz-tab>
           <app-homepage-weekly username="{{username}}"></app-homepage-weekly>
         </ng-template>
       </nz-tab>
       <nz-tab>
-        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 5}" queryParamsHandling="merge">OKR</a>
+        <a nz-tab-link [routerLink]="['.']" [queryParams]="{ idx: 5}" queryParamsHandling="merge">{{'OKR' | translate}}</a>
         <ng-template nz-tab>
           <app-homepage-okr username="{{username}}"></app-homepage-okr>
         </ng-template>

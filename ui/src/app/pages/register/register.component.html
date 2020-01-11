@@ -1,29 +1,29 @@
 <div class="container">
-  <p><strong style="font-size: large;">非常欢迎你注册 koala！</strong></p>
-  <p style="text-align: center;"><strong style="color: darkblue;">为高效能人士服务</strong></p>
+  <p><strong style="font-size: large;">{{'Welcome to register koala!' | translate}}</strong></p>
+  <p style="text-align: center;"><strong style="color: darkblue;">{{'Serving High-Performance People' | translate}}</strong></p>
   <div *ngIf="!username">
     <nz-input-group [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateEmail">
-      <input type="text" nz-input placeholder="请输入你的邮箱" [(ngModel)]="user.email" />
+      <input type="text" nz-input placeholder="{{'Please enter your email' | translate}}" [(ngModel)]="user.email" />
     </nz-input-group>
     <ng-template #prefixTemplateEmail><i nz-icon nzType="mail"></i></ng-template>
-    <ng-template #suffixTemplateInfo><i nz-icon nz-tooltip nzTitle="请使用中国大陆内运营的常用邮箱" nzType="info-circle"></i></ng-template>
+    <ng-template #suffixTemplateInfo><i nz-icon nz-tooltip nzTitle="{{'Please use a common mailbox operated in Mainland China' | translate}}" nzType="info-circle"></i></ng-template>
     <br /><br />
     <button class="login-form-button" nz-button (click)="onRegister()" [nzType]="'primary'">
-      <i nz-icon nzType="pull-request" nzTheme="outline"></i>申请注册
+      <i nz-icon nzType="pull-request" nzTheme="outline"></i>{{'Apply for registration' | translate}}
     </button>
   </div>
   <div *ngIf="username">
-    <p><strong>{{username}},请设置密码以登录 koala</strong></p>
+    <p><strong>{{username}},{{'please set a password to log in to koala'| translate }}</strong></p>
     <nz-input-group [nzSuffix]="suffixTemplate">
       <input [type]="passwordVisible ? 'text' : 'password'" nz-input
-        placeholder="请输入密码"
+        placeholder="{{'Please enter your password' | translate}}"
         [(ngModel)]="user.password"
       />
     </nz-input-group>
     <br /><br />
     <nz-input-group [nzSuffix]="suffixTemplate">
       <input [type]="passwordVisible ? 'text' : 'password'" nz-input
-             placeholder="请再次确认密码"
+             placeholder="{{'Please enter your password again' | translate}}"
              [(ngModel)]="password"
       />
     </nz-input-group>
@@ -32,7 +32,7 @@
     </ng-template>
     <br /><br />
     <button class="login-form-button" nz-button (click)="onPassword()" [nzType]="'primary'">
-      <i nz-icon nzType="safety" nzTheme="outline"></i>确认密码
+      <i nz-icon nzType="safety" nzTheme="outline"></i>{{'Confirm Password' | translate}}
     </button>
   </div>
 </div>
