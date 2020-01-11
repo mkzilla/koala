@@ -42,7 +42,6 @@ export class AppComponent implements OnInit {
         this.cache.changeUser(this.user);
       }
     });
-    this.pullTechnique();
   }
 
   ngOnInit() {
@@ -57,6 +56,7 @@ export class AppComponent implements OnInit {
       }
     }
     this.translate.setDefaultLang(this.language);
+    this.pullTechnique();
   }
 
   changeLanguage() {
@@ -72,13 +72,16 @@ export class AppComponent implements OnInit {
   pullTechnique(): void {
     this.technique = new Technique();
     this.authService.doGetTechnique().then((data: any) => {
+      console.log(data);
       if (data !== undefined) {
         this.technique = data;
-        this.rain.nativeElement.play();
         setInterval(() => {
           this.counter = transformTime(this.technique.createTime);
           if (this.counter === '已完成') {
             this.rain.nativeElement.pause();
+          } else {
+            console.log(this.counter);
+            this.rain.nativeElement.play();
           }
         }, 1000);
       } else {
