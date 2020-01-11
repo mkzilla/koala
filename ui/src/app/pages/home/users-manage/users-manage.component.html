@@ -1,20 +1,20 @@
 <nz-card style="width: 100%;">
   <div nz-row [nzGutter]="8">
     <div nz-col [nzSpan]="4" style="margin-top:10px;">
-      <button nz-button nzType="primary" nzSize="large" (click)="createUser.showModal()"><i nz-icon nzType="user-add"></i>创建用户</button>
+      <button nz-button nzType="primary" nzSize="large" (click)="createUser.showModal()"><i nz-icon nzType="user-add"></i>{{'New user' | translate}}</button>
     </div>
     <div nz-col [nzSpan]="12" style="margin-top:10px;">
       <nz-button-group nzSize="large">
-        <button nz-button nzType="primary" (click)="pagePre()"><i nz-icon nzType="left"></i>上一页</button>
-        <button nz-button nzType="primary" (click)="pagePost()">下一页<i nz-icon nzType="right"></i></button>
+        <button nz-button nzType="primary" (click)="pagePre()"><i nz-icon nzType="left"></i>{{'Previous' | translate}}</button>
+        <button nz-button nzType="primary" (click)="pagePost()">{{'Next' | translate}}<i nz-icon nzType="right"></i></button>
       </nz-button-group>
     </div>
     <div nz-col [nzSpan]="8" style="margin-top:10px;">
       <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-        <input type="text" nz-input placeholder="input search username" [(ngModel)]="username" (change)="search()"/>
+        <input type="text" nz-input placeholder="{{'please input the user name' | translate}}" [(ngModel)]="username" (change)="search()"/>
       </nz-input-group>
       <ng-template #suffixButton>
-        <button nz-button nzType="primary" nzSize="large" nzSearch (click)="search()">Search</button>
+        <button nz-button nzType="primary" nzSize="large" nzSearch (click)="search()">{{'Search' | translate}}</button>
       </ng-template>
     </div>
   </div>
@@ -22,10 +22,10 @@
   <nz-table [nzData]="users" [nzFrontPagination]="false" [nzShowPagination]="false">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>Username</th>
-      <th>Email</th>
-      <th>有效</th>
+      <th>{{'ID' | translate}}</th>
+      <th>{{'username' | translate}}</th>
+      <th>{{'Email' | translate}}</th>
+      <th>{{'Available' | translate}}</th>
     </tr>
     </thead>
     <tbody>

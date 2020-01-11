@@ -1,8 +1,8 @@
 <nz-row [nzGutter]="16">
   <nz-col [nzSpan]="12">
-    <nz-statistic [nzValue]="watches.length" [nzTitle]="'关注'"></nz-statistic>
+    <nz-statistic [nzValue]="watches.length" nzTitle="{{'Watched' | translate}}"></nz-statistic>
   </nz-col>
   <nz-col [nzSpan]="12">
-    <nz-statistic [nzValue]="votes.length" [nzTitle]="'投票'"></nz-statistic>
+    <nz-statistic [nzValue]="votes.length" nzTitle="{{'Voted' | translate}}"></nz-statistic>
   </nz-col>
 </nz-row>

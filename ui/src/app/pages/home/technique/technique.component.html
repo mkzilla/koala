@@ -1,7 +1,7 @@
-<nz-modal [(nzVisible)]="isVisible" nzTitle="完成番茄" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+<nz-modal [(nzVisible)]="isVisible" nzTitle="{{'Finish a tomato period' | translate}}" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
   <nz-alert
     nzType="success"
-    nzMessage="您已经完成番茄时间，我们建议您把此间完成的工作同步到任务中，如果此前没有创建相关任务，建议点击创建任务补充一下！"
+    nzMessage="{{'You have finished the tomato period, we recommend that you synchronize the work completed here to the task. If you have not created a related task before, it is recommended to click New Task to add it!' | translate}}"
     nzDescription=""
     nzShowIcon
   ></nz-alert>

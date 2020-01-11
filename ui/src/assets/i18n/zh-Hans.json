@@ -98,5 +98,19 @@
   "Load More": "加载更多",
   "progress": "进展",
   "comment": "评论",
-  "Please provide a concise description of your work or your idea on this task":"请简明扼要描述你的工作进展或者对本任务的看法"
+  "Please provide a concise description of your work or your idea on this task":"请简明扼要描述你的工作进展或者对本任务的看法",
+  "Finish a tomato period":"完成番茄",
+  "You have finished the tomato period, we recommend that you synchronize the work completed here to the task. If you have not created a related task before, it is recommended to click New Task to add it!":"您已经完成番茄时间，我们建议您把此间完成的工作同步到任务中，如果此前没有创建相关任务，建议点击创建任务补充一下！",
+  "please input the user name": "请输入用户名",
+  "New user":"创建用户",
+  "Available":"有效",
+  "Create a new user":"创建一个新用户",
+  "Supplement progress":"补充进展",
+  "Watch":"关注",
+  "Vote":"投票",
+  "Cancel":"取消",
+  "Comment": "评论",
+  "Weekly report of the group":"小组周报",
+  "How can I read the group weekly report?":"👀如何才能看组周报？",
+  "When you join a group, here will be the weekly work or study progress. The data comes from the task progress of each group member. The group weekly report is open to all group members. When you join multiple groups, your weekly report Open to each group.":"当您加入小组的时候，会在这里按周的工作或者学习进展，数据来源于各个组成员的任务进展，组周报对所有组成员都是公开的，当你加入多个组，你的周报会对各个组公开。"
 }

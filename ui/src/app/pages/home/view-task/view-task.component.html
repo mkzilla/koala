@@ -1,32 +1,29 @@
 <div class="left-content">
   <nz-card nzTitle="{{task.title}}" [nzExtra]="editTemplate" [nzActions]="[actionSchedule, actionEdit, actionComment,actionWatch, actionVote]">
-    <nz-tag [nzColor]="'#3D59AB'" *ngIf="task.importance == 1">不重要</nz-tag>
-    <nz-tag [nzColor]="'#33A1C9'" *ngIf="task.importance == 2">一般重要</nz-tag>
-    <nz-tag [nzColor]="'#03A89E'" *ngIf="task.importance == 3">重要</nz-tag>
-    <nz-tag [nzColor]="'#00C78C'" *ngIf="task.importance == 4">很重要</nz-tag>
-    <nz-tag [nzColor]="'#1E90FF'" *ngIf="task.importance == 5">极其重要</nz-tag>
-
-    <nz-tag [nzColor]="'#DDA0DD'" *ngIf="task.priority == 1">不紧急</nz-tag>
-    <nz-tag [nzColor]="'#DA70D6'" *ngIf="task.priority == 2">一般紧急</nz-tag>
-    <nz-tag [nzColor]="'#A066D3'" *ngIf="task.priority == 3">紧急</nz-tag>
-    <nz-tag [nzColor]="'#8A2BE2'" *ngIf="task.priority == 4">很紧急</nz-tag>
-    <nz-tag [nzColor]="'#9933FA'" *ngIf="task.priority == 5">极其紧急</nz-tag>
-
-    <nz-tag [nzColor]="'#FFB6C1'" *ngIf="task.state == 0">没有进展</nz-tag>
-    <nz-tag [nzColor]="'#FFD700'" *ngIf="task.state == 1">即将开始</nz-tag>
-    <nz-tag [nzColor]="'#32CD32'" *ngIf="task.state == 2">进行中</nz-tag>
-    <nz-tag [nzColor]="'#228B22'" *ngIf="task.state == 3">完成</nz-tag>
-    <nz-tag [nzColor]="'#E3170D'" *ngIf="task.state == 4">取消</nz-tag>
-    <nz-tag [nzColor]="'#FFD71f'" *ngIf="task.state == 5">暂停</nz-tag>
-
+    <nz-tag [nzColor]="'#3D59AB'" *ngIf="task.importance == 1">{{'unimportant' | translate}}</nz-tag>
+    <nz-tag [nzColor]="'#33A1C9'" *ngIf="task.importance == 2">{{'a bit important' | translate}}</nz-tag>
+    <nz-tag [nzColor]="'#03A89E'" *ngIf="task.importance == 3">{{'important' | translate}}</nz-tag>
+    <nz-tag [nzColor]="'#00C78C'" *ngIf="task.importance == 4">{{'very important' | translate}}</nz-tag>
+    <nz-tag [nzColor]="'#1E90FF'" *ngIf="task.importance == 5">{{'extremely important' | translate}}</nz-tag>
+    <nz-tag [nzColor]="'#DDA0DD'" *ngIf="task.priority == 1">{{'not urgent' | translate}}</nz-tag>
+    <nz-tag [nzColor]="'#DA70D6'" *ngIf="task.priority == 2">{{'a little urgent' | translate}}</nz-tag>
+    <nz-tag [nzColor]="'#A066D3'" *ngIf="task.priority == 3">{{'urgent' | translate}}</nz-tag>
+    <nz-tag [nzColor]="'#8A2BE2'" *ngIf="task.priority == 4">{{'very urgent' | translate}}</nz-tag>
+    <nz-tag [nzColor]="'#9933FA'" *ngIf="task.priority == 5">{{'imminent' | translate}}</nz-tag>
+    <nz-tag [nzColor]="'#FFB6C1'" *ngIf="task.state == 0">{{'no progress' | translate}}</nz-tag>
+    <nz-tag [nzColor]="'#FFD700'" *ngIf="task.state == 1">{{'will start' | translate}}</nz-tag>
+    <nz-tag [nzColor]="'#32CD32'" *ngIf="task.state == 2">{{'doing' | translate}}</nz-tag>
+    <nz-tag [nzColor]="'#228B22'" *ngIf="task.state == 3">{{'done' | translate}}</nz-tag>
+    <nz-tag [nzColor]="'#E3170D'" *ngIf="task.state == 4">{{'cancel' | translate}}</nz-tag>
+    <nz-tag [nzColor]="'#FFD71f'" *ngIf="task.state == 5">{{'pause' | translate}}</nz-tag>
     <nz-tag *ngIf="task.assign_to !== 0">{{task.user.nickname}}</nz-tag>
     <quill-view [content]="task.desc" format="text" theme="snow"></quill-view>
   </nz-card>
   <ng-template #editTemplate>
-    <a (click)="editTask.task=task;editTask.showModal()">修改</a>
+    <a (click)="editTask.task=task;editTask.showModal()">{{'Edit' | translate}}</a>
   </ng-template>
   <ng-template #actionSchedule>
-    <a (click)="scheduleTask.showModal(task.id,'进展')">添加进展</a>
+    <a (click)="scheduleTask.showModal(task.id,'进展')">{{'Supplement progress' | translate}}</a>
   </ng-template>
   <ng-template #actionEdit>
     <a (click)="changeState(1)" *ngIf="task.state==0">即将开始</a>
@@ -35,13 +32,13 @@
     <a (click)="changeState(2)" *ngIf="task.state==3">重新开启</a>
   </ng-template>
   <ng-template #actionWatch>
-    <a (click)="watch()" *ngIf="user.id !== task.user.id"><span *ngIf="task.is_watch">取消</span>关注</a>
+    <a (click)="watch()" *ngIf="user.id !== task.user.id"><span *ngIf="task.is_watch">{{'Cancel' | translate}}</span>{{'Watch' | translate}}</a>
   </ng-template>
   <ng-template #actionComment>
-    <a (click)="scheduleTask.showModal(task.id,'评论')">评论</a>
+    <a (click)="scheduleTask.showModal(task.id,'评论')">{{'Comment' | translate}}</a>
   </ng-template>
   <ng-template #actionVote>
-    <a (click)="vote()" *ngIf="user.id !== task.user.id"><span *ngIf="task.is_vote">取消</span>投票</a>
+    <a (click)="vote()" *ngIf="user.id !== task.user.id"><span *ngIf="task.is_vote">{{'Cancel' | translate}}</span>{{'Vote' | translate}}</a>
   </ng-template>
   <app-schedule-task (done)="refreshComment($event)"></app-schedule-task>
   <app-list-task-comment></app-list-task-comment>
